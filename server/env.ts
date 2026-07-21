@@ -44,7 +44,7 @@ if (!accessPassword || accessPassword === "change-me") {
 export const env = {
   isProd,
   port: num("PORT", 8790),
-  databaseUrl: process.env.coopgpt_DATABASE_URL || "",
+  databaseUrl: process.env.DATABASE_URL || "",
   siteOrigin: process.env.SITE_ORIGIN || "",
 
   anthropicApiKey: process.env.ANTHROPIC_API_KEY || "",
