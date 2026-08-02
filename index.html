@@ -49,10 +49,23 @@
       text-underline-offset: 3px;
     }
     .contact a:hover { color: #555; }
-    .backed {
-      margin-top: 0.6rem;
-      font-size: 0.8125rem;
-      color: #aaa;
+    .backers {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      margin-top: 1.25rem;
+    }
+    .backers img {
+      display: block;
+      width: auto;
+      object-fit: contain;
+    }
+    .speedrun-logo { height: 25px; }
+    .nvidia-logo { height: 58px; }
+    @media (max-width: 420px) {
+      .backers { gap: 1rem; }
+      .speedrun-logo { height: 20px; }
+      .nvidia-logo { height: 48px; }
     }
   </style>
 </head>
@@ -64,7 +77,10 @@
     <p>Hospitals today run pharmacy robots, specimen couriers, inventory bots, and cleaning machines alongside human transport teams with each operating in isolation and nothing above them to coordinate the whole. Coop is that layer. It orchestrates robots, staff, equipment, and inventory in real time, eliminating the fragmented handoffs and idle assets that cost hospitals thousands of hours each year.</p>
     <div class="contact">
       <a href="mailto:founders@coopbarns.com">founders@coopbarns.com</a>
-      <p class="backed">Backed by a16z speedrun</p>
+      <div class="backers" aria-label="Backed by">
+        <img class="speedrun-logo" src="assets/speedrun-logo.png" alt="a16z speedrun">
+        <img class="nvidia-logo" src="assets/nvidia-inception-logo.png" alt="NVIDIA Inception Program">
+      </div>
     </div>
   </main>
 </body>
