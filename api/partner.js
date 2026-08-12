@@ -50,6 +50,7 @@ module.exports = async function partnerInquiry(request, response) {
     headers: {
       Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
       "Content-Type": "application/json",
+      "User-Agent": "coop-website/1.0",
     },
     body: JSON.stringify({
       from: process.env.PARTNER_FROM_EMAIL || "Coop Website <website@cooplabs.com>",
