@@ -300,7 +300,6 @@ main { min-height: 100svh; }
   transition: background 160ms ease, transform 160ms ease;
 }
 
-.form-submit span { margin-left: 0.35rem; color: #72cccc; }
 .form-submit:hover { background: var(--teal); transform: translateY(-1px); }
 .form-submit:disabled { cursor: wait; opacity: 0.48; transform: none; }
 .honey { position: absolute !important; left: -10000px !important; }
