@@ -29,6 +29,7 @@ module.exports = async function partnerInquiry(request, response) {
 
   const body = request.body && typeof request.body === "object" ? request.body : {};
   const email = typeof body.email === "string" ? body.email.trim().toLowerCase() : "";
+  const message = typeof body.message === "string" ? body.message.trim() : "";
   const website = typeof body.website === "string" ? body.website.trim() : "";
 
   // Silently accept honeypot submissions so bots do not learn the filter.
@@ -38,6 +39,10 @@ module.exports = async function partnerInquiry(request, response) {
     return sendJson(response, 400, { error: "Enter a valid work email." });
   }
 
+  if (message.length > 2000) {
+    return sendJson(response, 400, { error: "Keep your message under 2,000 characters." });
+  }
+
   if (!process.env.RESEND_API_KEY) {
     return sendJson(response, 503, {
       error: "Email service is not configured yet.",
@@ -45,6 +50,7 @@ module.exports = async function partnerInquiry(request, response) {
   }
 
   const safeEmail = escapeHtml(email);
+  const safeMessage = message ? escapeHtml(message).replace(/\r?\n/g, "<br>") : "No message provided.";
   const resendResponse = await fetch("https://api.resend.com/emails", {
     method: "POST",
     headers: {
@@ -57,8 +63,8 @@ module.exports = async function partnerInquiry(request, response) {
       to: ["founders@cooplabs.com"],
       reply_to: email,
       subject: "New Coop partnership inquiry",
-      text: `New partnership inquiry from ${email}`,
-      html: `<p>New partnership inquiry from <a href="mailto:${safeEmail}">${safeEmail}</a>.</p>`,
+      text: `New partnership inquiry from ${email}\n\nMessage:\n${message || "No message provided."}`,
+      html: `<p>New partnership inquiry from <a href="mailto:${safeEmail}">${safeEmail}</a>.</p><p><strong>Message:</strong></p><p>${safeMessage}</p>`,
     }),
   });
 
