@@ -113,33 +113,9 @@ main { min-height: 100svh; }
   padding: 8rem 1.5rem 5rem;
   overflow: hidden;
   text-align: center;
-  isolation: isolate;
-}
-
-.hero::before {
-  content: "";
-  position: absolute;
-  z-index: -2;
-  inset: 84px 0 0;
   background:
-    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
-  background-size: 72px 72px;
-  mask-image: linear-gradient(to bottom, transparent, black 26%, transparent 82%);
-  -webkit-mask-image: linear-gradient(to bottom, transparent, black 26%, transparent 82%);
-}
-
-.hero-glow {
-  position: absolute;
-  z-index: -1;
-  top: 45%;
-  left: 50%;
-  width: min(70vw, 900px);
-  aspect-ratio: 1;
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(31, 138, 138, 0.2), rgba(7, 23, 39, 0) 68%);
-  filter: blur(10px);
+    linear-gradient(rgba(7, 23, 39, 0.08), rgba(7, 23, 39, 0.2)),
+    url("assets/coop-background-aurora-80pct.jpg") center / cover no-repeat;
 }
 
 .status {
@@ -174,23 +150,23 @@ main { min-height: 100svh; }
   left: 50%;
   display: flex;
   align-items: center;
-  gap: 1.25rem;
+  gap: 1.55rem;
   transform: translateX(-50%);
   white-space: nowrap;
 }
 
 .backers > span {
   color: rgba(255, 255, 255, 0.34);
-  font-size: 0.62rem;
+  font-size: 0.75rem;
   font-weight: 500;
   letter-spacing: 0.14em;
   text-transform: uppercase;
 }
 
 .backers img { width: auto; object-fit: contain; opacity: 0.58; }
-.speedrun-mark { height: 16px; filter: brightness(0) invert(1); }
-.nvidia-mark { height: 26px; }
-.backers i { width: 1px; height: 22px; background: rgba(255, 255, 255, 0.12); }
+.speedrun-mark { height: 21px; filter: brightness(0) invert(1); }
+.nvidia-mark { height: 33px; }
+.backers i { width: 1px; height: 28px; background: rgba(255, 255, 255, 0.12); }
 
 .partner-dialog {
   width: min(520px, calc(100% - 2rem));
@@ -377,11 +353,10 @@ main { min-height: 100svh; }
   .partner-button { min-height: 38px; padding-inline: 0.8rem; font-size: 0.69rem; }
   .hero { padding-inline: 1rem; }
   .hero h1 { font-size: clamp(2rem, 9.5vw, 4.2rem); }
-  .hero::before { background-size: 48px 48px; }
-  .backers { bottom: 1.4rem; gap: 0.8rem; }
-  .backers > span { font-size: 0.53rem; }
-  .speedrun-mark { height: 12px; }
-  .nvidia-mark { height: 20px; }
+  .backers { bottom: 1.4rem; gap: 0.95rem; }
+  .backers > span { font-size: 0.64rem; }
+  .speedrun-mark { height: 16px; }
+  .nvidia-mark { height: 26px; }
   .partner-dialog { width: calc(100% - 1rem); max-height: calc(100svh - 1rem); padding: 1.4rem 1.2rem; }
   .dialog-logo { width: 94px; margin-bottom: 1.25rem; }
   .dialog-eyebrow { margin-bottom: 0.7rem; }
