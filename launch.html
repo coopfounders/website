@@ -4,28 +4,45 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#071727" />
-    <meta name="description" content="The Coop launch blog is coming soon." />
-    <title>Launch Blog — Coop</title>
+    <meta name="description" content="Coop is building the operating layer for hospital work." />
+    <title>Coop Launch</title>
     <link rel="icon" href="assets/coop-favicon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&amp;display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css" />
+    <script defer src="/_vercel/insights/script.js"></script>
     <script src="app.js" defer></script>
   </head>
-  <body>
+  <body class="launch-page">
     <header class="site-header">
       <a class="brand" href="index.html" aria-label="Coop home">
         <img src="assets/coop-wordmark-white.png" alt="Coop" />
       </a>
       <nav aria-label="Primary navigation">
-        <a class="blog-link" href="index.html">Home</a>
         <button class="partner-button" type="button" data-partner-open>Partner with us</button>
       </nav>
     </header>
 
-    <main>
-      <article class="launch-note">
-        <p class="status"><span></span> Launch blog</p>
-        <h1>The robots shipped.<br />The coordination didn’t.</h1>
-        <p class="launch-coming">Our launch note is coming soon.</p>
+    <main class="launch-main">
+      <article>
+        <section class="launch-article" aria-labelledby="launch-article-title">
+          <div class="launch-copy">
+            <p class="launch-kicker">Launch Note</p>
+            <h2 id="launch-article-title">Hospitals have the technology.<br />Now it is time to unlock its potential.</h2>
+            <p>Hospitals have invested in some of the most advanced technology in the world. Yet much of its potential remains untapped.</p>
+            <p>The problem is not the ambition of hospital teams or the capability of the technology. It is the fragmented coordination surrounding how these systems fit into daily operations. Too often, clinicians and operators are left bridging those gaps themselves.</p>
+            <p>At Coop, we are working toward a future where hospital teams can get far more from the technology around them. Advanced systems should meaningfully expand what people can accomplish, help hospitals automate manual workflows, and enable them to operate better for everyone who depends on healthcare.</p>
+            <p>We are grateful to be supported by a16z Speedrun and NVIDIA Inception. We are just getting started. There is much more to share soon.</p>
+          </div>
+        </section>
+
+        <section class="launch-video" aria-label="Coop launch video">
+          <video controls playsinline preload="metadata" poster="assets/coop-launch-poster.jpg">
+            <source src="assets/coop-launch-video.mp4" type="video/mp4" />
+            Your browser does not support embedded video.
+          </video>
+        </section>
       </article>
     </main>
 
@@ -35,12 +52,16 @@
       <p class="dialog-eyebrow">Partner with Coop</p>
       <h2 id="partner-title">Let’s build a better hospital operation.</h2>
       <p>Leave your work email and our founding team will be in touch.</p>
-      <form action="/api/partner" method="POST" data-partner-form>
-        <label for="email">Work email</label>
-        <div class="email-row">
-          <input id="email" name="email" type="email" autocomplete="email" placeholder="you@hospital.org" required />
-          <button type="submit" data-submit-button>Submit <span>↗</span></button>
+      <form class="partner-form" action="/api/partner" method="POST" data-partner-form>
+        <div class="form-field">
+          <label for="email">Work email</label>
+          <input id="email" name="email" type="email" autocomplete="email" placeholder="you@company.com" required />
         </div>
+        <div class="form-field">
+          <label for="message">How can we help? <span class="optional-label">Optional</span></label>
+          <textarea id="message" name="message" rows="4" maxlength="2000" placeholder="Tell us what you're working on and how you'd like to partner."></textarea>
+        </div>
+        <button class="form-submit" type="submit" data-submit-button>Send inquiry</button>
         <input class="honey" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" />
         <p class="form-status" data-form-status aria-live="polite"></p>
       </form>
