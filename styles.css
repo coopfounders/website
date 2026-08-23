@@ -68,7 +68,7 @@ a { color: inherit; }
 }
 
 .brand img {
-  width: clamp(104px, 9vw, 132px);
+  width: clamp(128px, 11vw, 164px);
   height: auto;
   object-fit: contain;
 }
@@ -224,7 +224,7 @@ main { min-height: 100svh; }
   display: block;
   width: 112px;
   height: auto;
-  margin: 0 0 2rem;
+  margin: 0 0 0.9rem;
 }
 
 .dialog-close {
@@ -453,7 +453,7 @@ main { min-height: 100svh; }
   .speedrun-mark { height: 16px; }
   .nvidia-mark { height: 26px; }
   .partner-dialog { width: calc(100% - 1rem); max-height: calc(100svh - 1rem); padding: 1.4rem 1.2rem; }
-  .dialog-logo { width: 94px; margin-bottom: 1.25rem; }
+  .dialog-logo { width: 100px; margin-bottom: 0.75rem; }
   .dialog-eyebrow { margin-bottom: 0.7rem; }
   .partner-dialog h2 { font-size: clamp(1.8rem, 9vw, 2.4rem); }
   .partner-dialog > p:not(.dialog-eyebrow) { margin: 0.75rem 0 1.25rem; }
