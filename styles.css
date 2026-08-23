@@ -1,16 +1,9 @@
 @font-face {
-  font-family: "Geist";
-  src: url("assets/fonts/geist.woff2") format("woff2");
+  font-family: "Open Sans";
+  src: url("assets/fonts/open-sans-variable.ttf") format("truetype");
   font-style: normal;
-  font-weight: 100 900;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Inter";
-  src: url("assets/fonts/inter.woff2") format("woff2");
-  font-style: normal;
-  font-weight: 100 900;
+  font-weight: 300 800;
+  font-stretch: 75% 100%;
   font-display: swap;
 }
 
@@ -21,7 +14,7 @@
   --charcoal: #2f3b45;
   --white: #fff;
   --line: rgba(15, 39, 68, 0.13);
-  --font-sans: "Inter", "Avenir Next", "Geist", Arial, sans-serif;
+  --font-sans: "Open Sans", Arial, sans-serif;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -173,7 +166,7 @@ main { min-height: 100svh; }
   max-width: 1180px;
   margin: 0;
   color: #f7fafb;
-  font-family: "DM Sans", var(--font-sans);
+  font-family: var(--font-sans);
   font-size: clamp(2.9rem, 6vw, 6.2rem);
   font-weight: 400;
   line-height: 1.16;
@@ -215,7 +208,7 @@ main { min-height: 100svh; }
   border: 1px solid var(--line);
   border-radius: 12px;
   box-shadow: 0 30px 100px rgba(15, 39, 68, 0.24);
-  font-family: "DM Sans", var(--font-sans);
+  font-family: var(--font-sans);
 }
 
 .partner-dialog::backdrop { background: rgba(15, 39, 68, 0.42); backdrop-filter: blur(5px); }
@@ -257,11 +250,11 @@ main { min-height: 100svh; }
   max-width: 410px;
   margin: 0;
   color: var(--navy);
-  font-family: "DM Sans", var(--font-sans);
+  font-family: var(--font-sans);
   font-size: clamp(2rem, 5vw, 3rem);
-  font-weight: 500;
-  line-height: 1.02;
-  letter-spacing: -0.045em;
+  font-weight: 580;
+  line-height: 1.04;
+  letter-spacing: -0.04em;
 }
 
 .partner-dialog > p:not(.dialog-eyebrow) { margin: 1rem 0 2rem; color: rgba(47, 59, 69, 0.64); }
@@ -325,6 +318,8 @@ main { min-height: 100svh; }
   color: rgba(47, 59, 69, 0.68);
   font-size: 0.72rem;
 }
+
+.form-status:empty { display: none; }
 
 .form-status.is-success { color: #19715f; }
 .form-status.is-error { color: #9c3434; }
@@ -425,7 +420,7 @@ main { min-height: 100svh; }
 .launch-copy h2 {
   margin: 0;
   color: #f7fafb;
-  font-family: "DM Sans", var(--font-sans);
+  font-family: var(--font-sans);
   font-size: clamp(2.1rem, 2.8vw, 2.65rem);
   font-weight: 400;
   line-height: 1.02;
@@ -452,14 +447,19 @@ main { min-height: 100svh; }
   .backers > span { font-size: 0.64rem; }
   .speedrun-mark { height: 16px; }
   .nvidia-mark { height: 26px; }
-  .partner-dialog { width: calc(100% - 1rem); max-height: calc(100svh - 1rem); padding: 1.4rem 1.2rem; }
-  .dialog-logo { width: 100px; margin-bottom: 0.75rem; }
-  .dialog-eyebrow { margin-bottom: 0.7rem; }
-  .partner-dialog h2 { font-size: clamp(1.8rem, 9vw, 2.4rem); }
-  .partner-dialog > p:not(.dialog-eyebrow) { margin: 0.75rem 0 1.25rem; }
-  .partner-form { gap: 0.85rem; }
-  .form-field textarea { min-height: 96px; }
+  .partner-dialog { width: calc(100% - 1.25rem); max-height: calc(100svh - 1.25rem); padding: 1.25rem; }
+  .dialog-logo { width: 96px; margin-bottom: 0.55rem; }
+  .dialog-eyebrow { margin-bottom: 0.55rem; }
+  .partner-dialog h2 { font-size: clamp(1.85rem, 8.3vw, 2.15rem); }
+  .partner-dialog > p:not(.dialog-eyebrow) { margin: 0.65rem 0 1rem; line-height: 1.4; }
+  .partner-form { gap: 0.75rem; }
+  .partner-dialog label { margin-bottom: 0.4rem; }
+  .form-field input,
+  .form-field textarea { padding: 0.72rem 0.8rem; }
+  .form-field textarea { min-height: 84px; }
   .form-submit { width: 100%; }
+  .email-divider { margin: 1rem 0 0.85rem; }
+  .direct-email { font-size: 0.74rem; }
   .launch-video { width: calc(100% - 2rem); margin: 0 auto 4.5rem; }
   .launch-video video { border-radius: 8px; }
   .launch-video-caption { padding-top: 0.7rem; }
