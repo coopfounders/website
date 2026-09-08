@@ -1,0 +1,21 @@
+# Coop
+
+> Coop is a managed robotics lab in San Francisco, California. Teams build the intelligence; Coop handles physical setup, experiment execution, resets, and reporting.
+
+Coop supports policy comparisons, training-data experiments, and simulation-to-real-world validation. Hardware, scope, success criteria, and outputs are agreed for each engagement. The website's robot scenes, telemetry, and comparison charts are illustrations, not measured experimental results. Contact the team to discuss availability and project requirements.
+
+## Services
+
+- [Coop overview](/): Lab services, experiment stages, and example research questions.
+- [Experiment workflow](/#how-it-works): Set up, execute, reset, and report.
+- [Use cases](/#experiments): Models and policies, training data, simulation and infrastructure.
+- [Contact Coop](/#inquiry): Opens an inquiry form for discussing a robotics experiment.
+
+## Policies
+
+- [Privacy policy](/privacy): How website and inquiry information is handled.
+- [Cookie policy](/cookies): The site's cookie-free, tracking-free implementation.
+
+## Contact
+
+- [Email the team](mailto:founders@cooplabs.com): Business and privacy inquiries.

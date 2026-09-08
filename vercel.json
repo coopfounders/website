@@ -1,9 +1,4 @@
 {
-  "cleanUrls": true,
-  "trailingSlash": false,
-  "functions": {
-    "api/partner.js": {
-      "maxDuration": 10
-    }
-  }
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "nextjs"
 }

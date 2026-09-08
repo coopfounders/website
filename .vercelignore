@@ -1,0 +1,16 @@
+node_modules
+.next
+.vinext
+.wrangler
+.openai
+dist
+out
+work
+outputs
+coverage
+.env
+.env.*
+.dev.vars
+.dev.vars.*
+*.tsbuildinfo
+.DS_Store
