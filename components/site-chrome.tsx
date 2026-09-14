@@ -45,9 +45,11 @@ export function SiteFooter() {
       </div>
       <div className="footer-legal">
         <span>© {new Date().getFullYear()} Coop</span>
-        <nav aria-label="Legal">
+        <nav aria-label="Footer resources">
           <Link href="/privacy">Privacy policy</Link>
           <Link href="/cookies">Cookie policy</Link>
+          {/* oxlint-disable-next-line nextjs/no-html-link-for-pages -- Open the static text file with native browser navigation. */}
+          <a href="/llms.txt">llms.txt</a>
         </nav>
       </div>
     </footer>
