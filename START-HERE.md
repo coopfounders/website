@@ -75,12 +75,18 @@ The terminal prints the local production preview address. Run `npm test` for
 the contact validation and mocked Resend delivery checks, and `npm run lint`
 for lint and type checks. Tests do not send email.
 
+`npm run build` explicitly uses Webpack, matching the verified production build.
+It then checks the stylesheets linked by the generated homepage for the shared
+palette, font definitions, and navigation styles. This prevents a deployment
+with missing shared styles, as happened when the new page shipped alongside
+an older compiled `globals.css` through the Turbopack build path.
+
 ## Deploy to Vercel
 
 1. Import this repository into a Vercel project, or use the Vercel CLI from this
    folder with `npx vercel` to link a project and create a preview deployment.
 2. Use the Next.js framework preset and Node.js 22.x. The included `vercel.json`
-   selects Next.js; keep the default build command (`npm run build`) and output
+   selects Next.js and sets the build command to `npm run build`; keep the output
    directory (`.next`). Do not use a static export, because the contact API
    needs a server function.
 3. Set `RESEND_API_KEY`, `RESEND_FROM`, and `RESEND_TO` in the Vercel project
