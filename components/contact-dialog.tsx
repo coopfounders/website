@@ -48,15 +48,13 @@ export function ContactDialog({ children }: { children: ReactNode }) {
           </Dialog.Close>
           <div className="contact-modal-scroll">
             <div className="contact-modal-intro">
-              <span className="mono section-label">
-                <i className="status-dot" /> Your next experiment
-              </span>
+              <p className="overline">Work with Coop</p>
               <Dialog.Title ref={title} tabIndex={-1}>
-                Let’s build what’s next
+                Plan your next experiment
               </Dialog.Title>
               <Dialog.Description>
                 Tell us what you’re working on and what you want to learn. We’ll
-                take it from there.
+                help you work out the next steps.
               </Dialog.Description>
             </div>
             <ContactForm onNavigate={() => changeOpen(false)} />

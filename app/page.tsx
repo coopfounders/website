@@ -1,184 +1,224 @@
-/* oxlint-disable nextjs/no-img-element -- Local artwork is explicitly sized and served directly by Vite. */
+/* oxlint-disable nextjs/no-img-element -- Local editorial artwork and brand assets are explicitly sized. */
+import Link from 'next/link';
+import { ArrowDown, ArrowRight, ArrowUpRight, Plus } from 'lucide-react';
 import { ContactTrigger } from '@/components/contact-dialog';
-import { ArrowUpRight, ArrowDown } from 'lucide-react';
-import { ExperimentWalkthrough, HeroSignal } from './experiment';
+import { ExperimentStudio } from '@/components/experiment-studio';
+import { LandscapeLines } from '@/components/landscape-lines';
+import { InsightCard } from '@/components/insight-card';
+import { getPublishedInsights } from '@/lib/insights';
+import labPanorama from '@/public/images/coop-lab-panorama-v2.webp';
+import mobileLab from '@/public/images/coop-lab-mobile.webp';
 import { ScrollEffects } from './scroll-effects';
 
-const experiments = [
+const process = [
   {
-    no: '01',
-    type: 'Models & policies',
-    title: 'Does the next version actually work better?',
+    title: 'Define the experiment',
     description:
-      'Compare policies across agreed tasks, objects, and conditions. Capture regressions and the failures worth learning from.',
-    tags: ['Policy comparisons', 'Task generalization', 'Regression testing'],
+      'We work with you to choose the task, hardware, conditions, and success criteria. The scope and outputs are agreed before the first trial.',
   },
   {
-    no: '02',
-    type: 'Training data',
-    title: 'Does better data lead to better behavior?',
+    title: 'Run the physical work',
     description:
-      'Run controlled comparisons to see how a dataset or processing change affects performance on real robots.',
-    tags: [
-      'Dataset comparisons',
-      'Demonstration quality',
-      'Real-robot validation',
-    ],
+      'Our team handles the setup, execution, and resets. We keep track of the conditions and capture the behavior that matters to your question.',
   },
   {
-    no: '03',
-    type: 'Simulation & infrastructure',
-    title: 'What happens when your system meets reality?',
+    title: 'Review and iterate',
     description:
-      'Test transfer from simulation and surface the physical edge cases that matter to your training or deployment workflow.',
-    tags: ['Sim-to-real transfer', 'Hardware variation', 'Failure analysis'],
+      'Review the recordings, results, and failure cases with your team. Use the evidence to decide what to change and what to test next.',
   },
 ];
+
 export default function Home() {
+  const posts = getPublishedInsights();
   return (
-    <main>
+    <main className="frontier-home" id="main-content">
       <ScrollEffects />
-      <section className="hero wrap" id="main-content">
-        <div className="hero-eyebrow mono">
-          <span>
-            <i className="status-dot" />
-            San Francisco, CA
-          </span>
-        </div>
-        <h1>
-          <span>Your models.</span>
-          <span className="indent">The real world.</span>
-        </h1>
-        <div className="hero-stage">
-          <div className="hero-copy">
-            <p>
-              You build the intelligence.
-              <br />
-              We run the experiments.
-            </p>
-            <p className="support-copy">
-              A managed robotics lab for physical setup, policy testing, resets,
-              and reporting.
-            </p>
-            <ContactTrigger className="cta">
-              Bring us your experiment <ArrowUpRight size={17} />
-            </ContactTrigger>
-            <div className="partner-credits" aria-label="Our supporters">
-              <div className="partner-credit partner-speedrun">
-                <span className="mono">Backed by</span>
-                <div className="partner-logo">
-                  <img
-                    src="/images/a16z-speedrun.png"
-                    alt="a16z Speedrun"
-                    width="604"
-                    height="89"
-                  />
-                </div>
-              </div>
-              <div className="partner-credit partner-inception">
-                <span className="mono">Member of</span>
-                <div className="partner-logo">
-                  <img
-                    src="/images/nvidia-inception-black.png"
-                    alt="NVIDIA Inception Program"
-                    width="658"
-                    height="234"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="hero-art">
+      <section className="frontier-hero" aria-labelledby="hero-title">
+        <div className="hero-landscape" aria-hidden="true">
+          <LandscapeLines />
+          <picture className="hero-artwork">
+            <source
+              media="(max-width: 800px)"
+              srcSet={mobileLab.src}
+              width={mobileLab.width}
+              height={mobileLab.height}
+            />
             <img
-              className="robot-image"
-              src="/images/humanoid-lab-hero.png"
-              alt="Concept illustration of a humanoid testing a pick-and-place task"
-              width="1536"
-              height="1024"
+              src={labPanorama.src}
+              alt=""
+              width={labPanorama.width}
+              height={labPanorama.height}
               fetchPriority="high"
             />
-            <HeroSignal />
-            <div className="scene-label mono">
-              <span className="accent-square" />
-              Humanoid · Pick & place
-              <span className="concept-label">Concept illustration</span>
+          </picture>
+        </div>
+        <div className="hero-editorial-copy">
+          <h1 id="hero-title">
+            Real-world experiments for intelligent machines
+          </h1>
+          <p className="hero-summary">
+            We give robotics teams the lab and operational support to turn
+            research questions into physical experiments.
+          </p>
+          <div className="hero-editorial-actions">
+            <ContactTrigger className="editorial-button">
+              Work with Coop <ArrowUpRight size={17} aria-hidden="true" />
+            </ContactTrigger>
+            <a href="#experiments" className="editorial-link">
+              Explore the experiments <ArrowDown size={16} aria-hidden="true" />
+            </a>
+          </div>
+          <div className="hero-supporters" aria-label="Our supporters">
+            <div className="hero-supporter">
+              <span>Backed by</span>
+              <div className="hero-supporter-logo">
+                <img
+                  src="/images/a16z-speedrun.png"
+                  alt="a16z Speedrun"
+                  width="604"
+                  height="89"
+                />
+              </div>
+            </div>
+            <div className="hero-supporter hero-supporter-nvidia">
+              <span>Member of</span>
+              <div className="hero-supporter-logo">
+                <img
+                  src="/images/nvidia-inception-black.png"
+                  alt="NVIDIA Inception Program"
+                  width="658"
+                  height="234"
+                />
+              </div>
             </div>
           </div>
         </div>
-        <div className="hero-bottom mono">
-          <a href="#how-it-works">
-            Inside the experiment <ArrowDown size={15} />
-          </a>
-          <span>Setup → Execute → Reset → Report</span>
-        </div>
       </section>
-      <section id="how-it-works" className="operations wrap">
-        <div className="intro">
-          <span className="mono section-label">01 / The physical layer</span>
-          <h2>
-            Your model, <span>our lab</span>
+
+      <section
+        className="research-statement wrap"
+        aria-labelledby="research-title"
+      >
+        <div data-reveal="rise">
+          <p className="overline">The physical side of AI</p>
+          <h2 id="research-title">
+            Progress in robotics depends on what happens{' '}
+            <span className="research-highlight">outside the model</span>
           </h2>
-          <div className="intro-description">
+        </div>
+        <p
+          className="research-statement-copy"
+          data-reveal="rise"
+          data-reveal-delay="1"
+        >
+          Understanding how a robot moves an object, recovers from a mistake,
+          and works in changing conditions takes time with real hardware. Coop
+          brings the equipment, physical setup, and day-to-day lab operations
+          together, so your team can focus on the research.
+        </p>
+      </section>
+
+      <section
+        className="editorial-experiments"
+        id="experiments"
+        aria-labelledby="experiments-title"
+      >
+        <div className="wrap">
+          <div className="editorial-section-intro" data-reveal="rise">
+            <p className="overline">Experiments at Coop</p>
+            <h2 id="experiments-title">
+              A closer look at what your robots can do
+            </h2>
             <p>
-              Physical experiments come with physical work. We handle the setup,
-              execution, resets, and reporting so your team can spend its time
-              on what comes next.
+              Start with the question your team needs to answer. We’ll shape the
+              experiment around it.
             </p>
           </div>
+          <ExperimentStudio />
         </div>
-        <ExperimentWalkthrough />
       </section>
-      <section id="experiments" className="experiments-section wrap">
-        <div className="experiment-heading">
-          <span className="mono section-label">
-            02 / Built around your question
-          </span>
-          <h2>What do you need to prove next?</h2>
+
+      <section
+        className="lab-approach wrap"
+        id="how-it-works"
+        aria-labelledby="approach-title"
+      >
+        <div className="approach-intro" data-reveal="rise">
+          <p className="overline">Working with the lab</p>
+          <h2 id="approach-title">An extension of your research team</h2>
           <p>
-            For teams building models, data, and tools for the physical world.
+            From an initial question to a set of runs you can learn from, we
+            manage the physical work at every stage.
           </p>
+          <ContactTrigger className="editorial-link">
+            Talk through your project{' '}
+            <ArrowUpRight size={17} aria-hidden="true" />
+          </ContactTrigger>
         </div>
-        <div className="use-cases">
-          {experiments.map((e) => (
-            <article className="use-case" key={e.no}>
-              <div className="use-case-label mono">
-                <span>{e.no}</span>
-                <span>{e.type}</span>
-              </div>
-              <div className="use-case-content">
-                <h3>{e.title}</h3>
-                <p>{e.description}</p>
-                <ul className="case-tags mono">
-                  {e.tags.map((t) => (
-                    <li key={t}>{t}</li>
-                  ))}
-                </ul>
-              </div>
-            </article>
+        <div className="approach-details">
+          {process.map((step, index) => (
+            <details
+              key={step.title}
+              open={index === 0}
+              data-reveal="rise"
+              data-reveal-delay={index}
+            >
+              <summary>
+                <span className="approach-number">0{index + 1}</span>
+                <h3>{step.title}</h3>
+                <Plus size={18} aria-hidden="true" />
+              </summary>
+              <p>{step.description}</p>
+            </details>
           ))}
         </div>
       </section>
-      <section className="contact-section" id="contact">
-        <div className="wrap contact-inner">
-          <div className="contact-kicker mono">
-            <span>03 / Your next experiment</span>
+
+      <section
+        className="editorial-journal wrap"
+        aria-labelledby="journal-title"
+      >
+        {posts.length > 0 ? (
+          <>
+            <div className="editorial-journal-heading" data-reveal="rise">
+              <div>
+                <p className="overline">From the Coop team</p>
+                <h2 id="journal-title">Research & insights</h2>
+              </div>
+              <Link href="/insights" className="editorial-link">
+                View all insights <ArrowRight size={17} aria-hidden="true" />
+              </Link>
+            </div>
+            <div className="insights-grid" data-reveal="rise">
+              {posts.slice(0, 3).map((post) => (
+                <InsightCard key={post.slug} post={post} />
+              ))}
+            </div>
+          </>
+        ) : (
+          <div className="journal-invitation" data-reveal="journal">
+            <LandscapeLines className="journal-landscape" />
+            <div className="reveal-part">
+              <p className="overline">From the Coop team</p>
+              <h2 id="journal-title">Research & insights</h2>
+            </div>
+            <div
+              className="journal-invitation-copy reveal-part"
+              data-reveal-step="1"
+            >
+              <p>
+                Perspectives on robotics, experimental practice, and the work of
+                building a physical lab.
+              </p>
+              <Link href="/insights" className="editorial-link">
+                Visit the journal <ArrowRight size={17} aria-hidden="true" />
+              </Link>
+            </div>
+            <span className="journal-note reveal-part" data-reveal-step="2">
+              First articles coming soon
+            </span>
           </div>
-          <h2>
-            Bring your next
-            <br />
-            experiment to life<span className="accent-text">.</span>
-          </h2>
-          <div className="contact-bottom">
-            <p>
-              Tell us what you want to test.
-              <br />
-              We’ll work through the hardware, scope, and outputs together.
-            </p>
-            <ContactTrigger className="cta">
-              Talk to the team <ArrowUpRight size={18} />
-            </ContactTrigger>
-          </div>
-        </div>
+        )}
       </section>
     </main>
   );

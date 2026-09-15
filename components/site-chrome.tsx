@@ -1,7 +1,8 @@
-/* oxlint-disable nextjs/no-img-element -- Local artwork is explicitly sized and served directly by Vite. */
+/* oxlint-disable nextjs/no-img-element -- Sized, local brand artwork. */
 import Link from 'next/link';
 import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import { ContactTrigger } from './contact-dialog';
+import { SiteNavigation } from './site-navigation';
 
 export function BrandLogo() {
   return (
@@ -19,13 +20,7 @@ export function SiteHeader() {
       </a>
       <header className="site-header wrap">
         <BrandLogo />
-        <nav aria-label="Main navigation">
-          <Link href="/#how-it-works">How it works</Link>
-          <Link href="/#experiments">Experiments</Link>
-          <ContactTrigger className="cta">
-            Let’s talk <ArrowUpRight size={15} />
-          </ContactTrigger>
-        </nav>
+        <SiteNavigation />
       </header>
     </>
   );
@@ -33,7 +28,7 @@ export function SiteHeader() {
 
 export function SiteFooter() {
   return (
-    <footer className="site-footer wrap">
+    <footer className="site-footer wrap" id="contact">
       <div className="footer-main">
         <BrandLogo />
         <ContactTrigger className="footer-contact">

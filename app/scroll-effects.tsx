@@ -2,69 +2,111 @@
 
 import { useEffect } from 'react';
 
-/** Native scrolling; all content stays visible without JavaScript. */
+/** Native scrolling with quiet artwork motion and one-time section entrances. */
 export function ScrollEffects() {
   useEffect(() => {
-    const root = document.documentElement;
+    const main = document.getElementById('main-content');
+    if (!main || !('IntersectionObserver' in window)) return;
+
+    const targets = Array.from(
+      main.querySelectorAll<HTMLElement>('[data-reveal]'),
+    );
     const preference = window.matchMedia('(prefers-reduced-motion: reduce)');
-    const hero = document.querySelector<HTMLElement>('.hero');
-    const intro = document.querySelector<HTMLElement>('.intro');
-    const contact = document.querySelector<HTMLElement>('.contact-section');
-    const targets = Array.from(document.querySelectorAll<HTMLElement>('.section-label, .intro h2, .intro-description, .experiment-walkthrough, .experiment-heading h2, .experiment-heading > p, .use-case, .contact-kicker, .contact-inner h2, .contact-bottom'));
-    let frame = 0;
+    const hero = main.querySelector<HTMLElement>('.frontier-hero');
+    const revealed = new Set<HTMLElement>();
     let observer: IntersectionObserver | undefined;
-    const clamp = (n: number) => Math.max(0, Math.min(1, n));
-    const update = () => {
+    let heroInView = false;
+    let frame = 0;
+
+    function updateHero() {
       frame = 0;
-      if (preference.matches) return;
-      const height = window.innerHeight;
-      const scrollRange = root.scrollHeight - height;
-      root.style.setProperty('--page-progress', String(scrollRange > 0 ? clamp(window.scrollY / scrollRange) : 0));
-      if (hero) {
-        const box = hero.getBoundingClientRect();
-        const progress = clamp(-box.top / box.height);
-        hero.style.setProperty('--hero-drift', `${progress * (window.innerWidth < 600 ? 22 : 75)}px`);
-        hero.style.setProperty('--title-drift', `${progress * (window.innerWidth < 600 ? 8 : 35)}px`);
-      }
-      if (intro) intro.style.setProperty('--ink-progress', `${clamp((height * .85 - intro.getBoundingClientRect().top) / (height * .55)) * 100}%`);
-      if (contact) {
-        const progress = clamp((height - contact.getBoundingClientRect().top) / (height * .7));
-        contact.style.setProperty('--panel-inset', `${(1 - progress) * 4}%`);
-      }
-    };
-    const schedule = () => { if (!frame) frame = requestAnimationFrame(update); };
-    const configure = () => {
+      if (!hero || preference.matches) return;
+      const bounds = hero.getBoundingClientRect();
+      const progress = Math.max(0, Math.min(1, -bounds.top / bounds.height));
+      const distance = window.innerWidth <= 800 ? 10 : 24;
+      hero.style.setProperty(
+        '--hero-drift',
+        `${(progress * distance).toFixed(2)}px`,
+      );
+    }
+
+    function scheduleHero() {
+      if (!heroInView || frame || preference.matches) return;
+      frame = requestAnimationFrame(updateHero);
+    }
+
+    function reveal(target: HTMLElement, instantly = false) {
+      target.dataset.motion = instantly ? 'instant' : 'visible';
+      revealed.add(target);
+      observer?.unobserve(target);
+    }
+
+    function configure() {
       observer?.disconnect();
-      root.classList.remove('scroll-motion');
-      targets.forEach(el => el.classList.remove('scroll-reveal', 'is-visible'));
+      cancelAnimationFrame(frame);
+      frame = 0;
+      heroInView = false;
+      hero?.style.removeProperty('--hero-drift');
+      window.removeEventListener('scroll', scheduleHero);
+      window.removeEventListener('resize', scheduleHero);
+      targets.forEach((target) => delete target.dataset.motion);
       if (preference.matches) return;
-      // Elements already on screen never flash or disappear on hydration.
-      targets.forEach(el => {
-        if (el.getBoundingClientRect().top >= window.innerHeight * .96) el.classList.add('scroll-reveal');
-      });
-      observer = new IntersectionObserver(entries => entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          observer?.unobserve(entry.target);
+
+      observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.target === hero) {
+              heroInView = entry.isIntersecting;
+              scheduleHero();
+              return;
+            }
+            if (entry.isIntersecting) reveal(entry.target as HTMLElement);
+          });
+        },
+        { rootMargin: '0px 0px -32px 0px', threshold: 0 },
+      );
+
+      targets.forEach((target) => {
+        // Never hide content already visible on load or when returning to a page.
+        if (
+          revealed.has(target) ||
+          target.getBoundingClientRect().top < window.innerHeight
+        ) {
+          revealed.add(target);
+          return;
         }
-      }), { threshold: 0, rootMargin: '0px 0px -6% 0px' });
-      targets.forEach(el => observer?.observe(el));
-      root.classList.add('scroll-motion');
-      schedule();
-    };
+        target.dataset.motion = 'pending';
+        observer?.observe(target);
+      });
+
+      if (hero) {
+        observer.observe(hero);
+        window.addEventListener('scroll', scheduleHero, { passive: true });
+        window.addEventListener('resize', scheduleHero);
+      }
+    }
+
+    function revealFocused(event: FocusEvent) {
+      if (!(event.target instanceof Element)) return;
+      const target = event.target.closest<HTMLElement>('[data-reveal]');
+      if (target?.dataset.motion === 'pending') reveal(target, true);
+    }
+
     configure();
     preference.addEventListener('change', configure);
-    window.addEventListener('scroll', schedule, { passive: true });
-    window.addEventListener('resize', schedule);
+    main.addEventListener('focusin', revealFocused);
+
     return () => {
       cancelAnimationFrame(frame);
       observer?.disconnect();
+      hero?.style.removeProperty('--hero-drift');
+      window.removeEventListener('scroll', scheduleHero);
+      window.removeEventListener('resize', scheduleHero);
       preference.removeEventListener('change', configure);
-      window.removeEventListener('scroll', schedule);
-      window.removeEventListener('resize', schedule);
-      root.classList.remove('scroll-motion');
-      targets.forEach(el => el.classList.remove('scroll-reveal', 'is-visible'));
+      main.removeEventListener('focusin', revealFocused);
+      targets.forEach((target) => delete target.dataset.motion);
     };
   }, []);
-  return <div className="scroll-progress" aria-hidden="true"/>;
+
+  return null;
 }

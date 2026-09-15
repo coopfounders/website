@@ -149,9 +149,13 @@ export function ContactForm({ onNavigate }: { onNavigate?: () => void }) {
         <span className="form-note">
           All fields required unless marked optional.
         </span>
-        <button className="cta" type="submit" disabled={status === 'sending'}>
+        <button
+          className="editorial-button"
+          type="submit"
+          disabled={status === 'sending'}
+        >
           {status === 'sending' ? 'Sending…' : 'Send inquiry'}
-          <ArrowUpRight size={17} />
+          <ArrowUpRight size={17} aria-hidden="true" />
         </button>
       </div>
       <div

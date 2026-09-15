@@ -18,16 +18,26 @@ external services; Resend credentials are needed only to send contact inquiries.
 
 ## Main files
 
-- app/page.tsx: homepage content
-- app/globals.css: styles, navy palette, and animations
-- app/experiment.tsx: interactive experiment loop
-- app/scroll-effects.tsx: scroll motion
+- app/page.tsx: homepage content, supporter logos beneath the hero actions, and separate desktop/mobile hero illustrations selected with `<picture>`
+- app/globals.css: shared navigation, footer, forms, and the navy/ivory palette
+- app/editorial.css: homepage and journal typography, layered desktop/mobile hero artwork behind the copy, and compact section spacing
+- app/scroll-effects.tsx: subtle hero artwork drift, one-time content reveals, and the Insights panel entrance; respects reduced motion and keeps content visible without JavaScript
+- app/layout.tsx: self-hosted Newsreader and Manrope font configuration
+- components/experiment-studio.tsx: interactive experiment selector with a separate illustration for each topic
+- components/landscape-lines.tsx: decorative blue landscape artwork
+- app/insights/: journal landing page and individual article template
+- lib/insights.ts: your team's article content and publication flags
+- INSIGHTS.md: adding and publishing your own writing
 - public/images/: logo, partner badges, and illustrations
+- public/fonts/: locally hosted fonts and their licenses
+- ASSET-SOURCES.md and design/: asset provenance and the exact illustration prompts
 - components/site-chrome.tsx: shared header and footer
+- components/site-navigation.tsx: serif text navigation and accessible mobile menu
+- components/insight-card.tsx: article previews
 - components/legacy-cookie-cleanup.tsx: removes the old consent preference
 - components/contact-dialog.tsx and components/contact-form.tsx: shared inquiry pop-up and form
 - app/contact/page.tsx: redirects old contact links to the homepage inquiry pop-up
-- app/contact-dialog.css: inquiry pop-up and partner credit styles
+- app/contact-dialog.css: inquiry pop-up styles, matching the site's typography and rounded controls
 - app/api/contact/route.ts: validated, server-side inquiry delivery
 - app/privacy/ and app/cookies/: policy pages
 - public/robots.txt and public/llms.txt: crawler information
