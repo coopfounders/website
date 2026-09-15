@@ -35,6 +35,7 @@ const css = (
   .replace(/\/\*[\s\S]*?\*\//g, '');
 
 const requiredProperties = [
+  'site-header-height',
   'brand-blue',
   'brand-blue-dark',
   'surface-blue',

@@ -6,7 +6,7 @@
     "node": "22.x"
   },
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --webpack",
     "build": "next build --webpack && node scripts/verify-production-styles.mjs",
     "start": "next start",
     "test": "node --experimental-strip-types --test tests/*.test.mjs",

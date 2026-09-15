@@ -29,6 +29,7 @@
 }
 
 :root {
+  --site-header-height: 86px;
   --background: #f8f7f3;
   --foreground: #262c30;
   --primary: var(--brand-blue);
@@ -205,10 +206,10 @@ h2 {
   top: 12px;
 }
 .site-header {
-  height: 86px;
-  display: flex;
+  height: var(--site-header-height);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
   align-items: center;
-  justify-content: space-between;
   gap: 24px;
   position: relative;
   z-index: 10;
@@ -221,6 +222,7 @@ h2 {
   background: var(--blue-border);
 }
 .brand-wordmark {
+  justify-self: start;
   width: 112px;
   display: block;
   line-height: 0;
@@ -232,11 +234,7 @@ h2 {
   height: auto;
 }
 .header-navigation {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  flex: 1;
-  align-items: center;
-  gap: 48px;
+  display: contents;
 }
 .main-navigation {
   display: flex;
@@ -657,8 +655,11 @@ h2 {
   }
 }
 @media (max-width: 800px) {
+  :root {
+    --site-header-height: 72px;
+  }
   .site-header {
-    height: 72px;
+    display: flex;
     gap: 12px;
   }
   .site-header::after {
@@ -669,6 +670,8 @@ h2 {
   }
   .header-navigation {
     display: flex;
+    flex: 1;
+    align-items: center;
     justify-content: flex-end;
     gap: 8px;
   }

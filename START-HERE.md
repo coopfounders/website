@@ -75,8 +75,12 @@ The terminal prints the local production preview address. Run `npm test` for
 the contact validation and mocked Resend delivery checks, and `npm run lint`
 for lint and type checks. Tests do not send email.
 
-`npm run build` explicitly uses Webpack, matching the verified production build.
-It then checks the stylesheets linked by the generated homepage for the shared
+Both `npm run dev` and `npm run build` explicitly use Webpack so development
+and production follow the same CSS compilation path. The Turbopack development
+server also reused an older shared stylesheet after edits, leaving newer hero
+styles without the variables they needed.
+
+`npm run build` also checks the stylesheets linked by the generated homepage for the shared
 palette, font definitions, and navigation styles. This prevents a deployment
 with missing shared styles, as happened when the new page shipped alongside
 an older compiled `globals.css` through the Turbopack build path.
