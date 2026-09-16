@@ -7,6 +7,10 @@
   letter-spacing: -0.035em;
 }
 .overline {
+  display: inline-block;
+  border-top: 1px solid currentColor;
+  padding-top: 3px;
+  text-decoration-line: none;
   font-size: 11px;
   font-weight: 600;
   line-height: 1.5;
@@ -90,8 +94,9 @@
 .hero-summary {
   max-width: 575px;
   margin: 30px auto 0;
-  color: var(--muted-foreground);
+  color: var(--foreground);
   font-size: 17px;
+  font-weight: 500;
   line-height: 1.8;
 }
 .hero-editorial-actions {
@@ -223,7 +228,8 @@
 }
 .research-statement-copy {
   max-width: 760px;
-  margin: 32px auto 0;
+  margin: 32px 0 0;
+  text-align: left;
   font-size: 15px;
   line-height: 1.9;
   color: var(--muted-foreground);
@@ -309,24 +315,8 @@
   width: 100%;
   height: 100%;
   object-fit: contain;
-  padding: 12px 12px 40px;
+  padding: 12px;
   mix-blend-mode: multiply;
-}
-.studio-visual figcaption {
-  position: absolute;
-  inset: auto 0 0;
-  display: flex;
-  align-items: end;
-  justify-content: space-between;
-  gap: 20px;
-  padding: 24px 26px 22px;
-  color: var(--muted-foreground);
-  font-size: 10px;
-  line-height: 1.6;
-}
-.studio-visual figcaption > span:first-child {
-  font-size: 12px;
-  font-weight: 600;
 }
 .studio-copy {
   padding: 40px 44px 32px;
@@ -1032,14 +1022,6 @@
     height: auto;
     aspect-ratio: 1.12;
     max-height: 380px;
-  }
-  .studio-visual figcaption {
-    padding: 20px 18px 16px;
-    gap: 10px;
-    font-size: 10px;
-  }
-  .studio-visual figcaption > span:first-child {
-    font-size: 10px;
   }
   .studio-copy {
     padding: 24px 20px 22px;

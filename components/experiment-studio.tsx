@@ -68,9 +68,6 @@ export function ExperimentStudio() {
             height="1024"
             loading="lazy"
           />
-          <figcaption>
-            <span>{experiment.name}</span>
-          </figcaption>
         </figure>
         <div
           className="studio-copy"
