@@ -98,7 +98,7 @@ const insights: InsightPost[] = [
       },
     ],
     contact: {
-      text: 'If you’re working on a robot model or dataset and have a physical evaluation question you haven’t been able to answer, we would like nothing more than to hear about it.',
+      text: 'If you’re working on a robot model or dataset and have a physical evaluation question you haven’t been able to answer, we would love to hear about it.',
       email: 'founders@cooplabs.com',
     },
   },
