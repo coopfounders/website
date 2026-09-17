@@ -21,7 +21,31 @@
 - Manrope: variable body face from the [Google Fonts source repository](https://github.com/google/fonts/tree/main/ofl/manrope), self-hosted as `public/fonts/manrope-latin.woff2`.
 - Both fonts are Latin subsets with common punctuation and symbols. Their SIL Open Font License files are included beside the fonts. No third-party font requests are made at runtime.
 
-# Experiment illustrations
+# Benchmark illustrations
+
+The active evaluation selector uses humanoid versions of the three benchmark illustrations. They were edited through the approved fallback imagegen CLI and OpenAI Image API (`gpt-image-2`, edits endpoint, high quality, 1024 × 1024). Each original benchmark image was the edit target, and `coop-lab-mobile.webp` supplied the humanoid design reference. The edits preserve the existing tasks, composition, architectural pencil drawing, ivory paper, and muted watercolor palette. Each prompt was passed unchanged with `--no-augment`.
+
+| Evaluation         | Website asset                                                                                    | Exact edit prompt                                                             |
+| ------------------ | ------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------- |
+| Policy comparison  | [coop-benchmark-comparison-humanoid.webp](public/images/coop-benchmark-comparison-humanoid.webp) | [Comparison humanoid prompt](design/benchmark-comparison-humanoid-prompt.txt) |
+| Robustness         | [coop-benchmark-robustness-humanoid.webp](public/images/coop-benchmark-robustness-humanoid.webp) | [Robustness humanoid prompt](design/benchmark-robustness-humanoid-prompt.txt) |
+| Regression testing | [coop-benchmark-regression-humanoid.webp](public/images/coop-benchmark-regression-humanoid.webp) | [Regression humanoid prompt](design/benchmark-regression-humanoid-prompt.txt) |
+
+The original edits are saved locally as `output/imagegen/coop-benchmark-{comparison,robustness,regression}-humanoid.png`. The website uses optimized WebP copies with humanoid-specific alt text. The regression illustration also replaces the robots inside both monitor recordings. All are concept illustrations of evaluation scenarios, not facility photographs or published benchmark results.
+
+# Original robot-arm benchmark illustrations
+
+The preceding versions were created through the approved fallback imagegen CLI and OpenAI Image API (`gpt-image-2`, edits endpoint, high quality, 1024 × 1024). The previous `coop-experiment-policy.webp` was supplied as a style reference to preserve the architectural pencil drawing, ivory paper, and muted blue watercolor palette. Each prompt was passed unchanged with `--no-augment`.
+
+| Evaluation         | Website asset                                                                  | Exact prompt                                                |
+| ------------------ | ------------------------------------------------------------------------------ | ----------------------------------------------------------- |
+| Policy comparison  | [coop-benchmark-comparison.webp](public/images/coop-benchmark-comparison.webp) | [Comparison prompt](design/benchmark-comparison-prompt.txt) |
+| Robustness         | [coop-benchmark-robustness.webp](public/images/coop-benchmark-robustness.webp) | [Robustness prompt](design/benchmark-robustness-prompt.txt) |
+| Regression testing | [coop-benchmark-regression.webp](public/images/coop-benchmark-regression.webp) | [Regression prompt](design/benchmark-regression-prompt.txt) |
+
+The original PNGs are saved locally as `output/imagegen/coop-benchmark-{comparison,robustness,regression}.png`. These images and their WebP copies are retained as references; the evaluation selector now uses the humanoid edits above. Existing desktop and mobile hero artwork is retained.
+
+# Previous experiment illustrations
 
 Three original images created through the fallback imagegen CLI and OpenAI Image API (`gpt-image-2`, edits endpoint, high quality, 1024 × 1024). The existing `coop-lab-panorama.webp` was supplied as a style reference for each separate composition. The final prompt files were passed unchanged with `--no-augment`.
 
@@ -31,7 +55,7 @@ Three original images created through the fallback imagegen CLI and OpenAI Image
 | Data validation   | [coop-experiment-data.webp](public/images/coop-experiment-data.webp)         | [Data prompt](design/experiment-data-prompt.txt)         |
 | Sim-to-real       | [coop-experiment-transfer.webp](public/images/coop-experiment-transfer.webp) | [Transfer prompt](design/experiment-transfer-prompt.txt) |
 
-The originals are saved locally as `output/imagegen/coop-experiment-{policy,data,transfer}.png`. The optimized WebP files are used on the website; each is under 170 KB. All three are AI-generated concept illustrations, with descriptive alt text on the website.
+The originals are saved locally as `output/imagegen/coop-experiment-{policy,data,transfer}.png`. These earlier WebP assets are preserved but no longer used by the evaluation selector. Each is under 170 KB. All three are AI-generated concept illustrations.
 
 # Policy and machine-readable references
 

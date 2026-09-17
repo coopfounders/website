@@ -7,7 +7,7 @@ import { ArrowUpRight, Menu, X } from 'lucide-react';
 import { ContactTrigger } from './contact-dialog';
 
 const links = [
-  { href: '/#experiments', label: 'Experiments' },
+  { href: '/#experiments', label: 'Benchmarks' },
   { href: '/#how-it-works', label: 'How it works' },
   { href: '/insights', label: 'Insights' },
 ];

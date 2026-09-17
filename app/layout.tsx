@@ -23,11 +23,11 @@ const manrope = localFont({
 });
 export const metadata: Metadata = {
   title: {
-    default: 'Coop | Real-world robotics experiments',
+    default: 'Coop | Robotics benchmarking & evaluations',
     template: '%s | Coop',
   },
   description:
-    'Coop gives robotics teams the lab and operational support to turn research questions into real-world experiments.',
+    'Coop benchmarks robot policies on real hardware. Compare policies, test robustness, and track regressions with repeatable evaluations and inspectable evidence.',
   icons: {
     icon: [
       { url: '/favicon.ico', sizes: '16x16 32x32 48x48' },

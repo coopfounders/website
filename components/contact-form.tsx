@@ -115,14 +115,16 @@ export function ContactForm({ onNavigate }: { onNavigate?: () => void }) {
         />
       </div>
       <div className="form-field form-full">
-        <label htmlFor="contact-message">What would you like to test?</label>
+        <label htmlFor="contact-message">
+          What would you like to evaluate?
+        </label>
         <textarea
           id="contact-message"
           name="message"
           required
           minLength={20}
           maxLength={5000}
-          placeholder="Tell us about your task, hardware, timeline, or the question you want to answer."
+          placeholder="Which policies or versions are you comparing? Tell us about the robot, tasks, and what you want to measure."
           aria-describedby="contact-message-help"
         />
         <p id="contact-message-help" className="form-note">
@@ -166,7 +168,7 @@ export function ContactForm({ onNavigate }: { onNavigate?: () => void }) {
         {status === 'success' && (
           <p className="form-status" tabIndex={-1} ref={statusElement}>
             <Check size={17} aria-hidden="true" /> Your inquiry has been sent.
-            Thanks for telling us about your experiment. We’ll reply to the
+            Thanks for telling us about your evaluation. We’ll reply to the
             email you provided.
           </p>
         )}

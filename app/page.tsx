@@ -12,19 +12,19 @@ import { ScrollEffects } from './scroll-effects';
 
 const process = [
   {
-    title: 'Define the experiment',
+    title: 'Start with a shared protocol',
     description:
-      'We work with you to choose the task, hardware, conditions, and success criteria. The scope and outputs are agreed before the first trial.',
+      'Define the robot, tasks, conditions, and success rules. Check policy compatibility and establish a reference baseline before the scored evaluation begins.',
   },
   {
-    title: 'Run the physical work',
+    title: 'Make every trial count',
     description:
-      'Our team handles the setup, execution, and resets. We keep track of the conditions and capture the behavior that matters to your question.',
+      'Run repeated trials with controlled starting conditions and documented resets. Record failures, interruptions, and human interventions alongside successful runs.',
   },
   {
-    title: 'Review and iterate',
+    title: 'Connect results to evidence',
     description:
-      'Review the recordings, results, and failure cases with your team. Use the evidence to decide what to change and what to test next.',
+      'Review results by task and condition, with trial counts, uncertainty, and recordings. Understand what the comparison supports, where it is limited, and what needs another test.',
   },
 ];
 
@@ -54,18 +54,19 @@ export default function Home() {
         </div>
         <div className="hero-editorial-copy">
           <h1 id="hero-title">
-            Real-world experiments for intelligent machines
+            Real-world benchmarks for intelligent machines
           </h1>
           <p className="hero-summary">
-            We give robotics teams the lab and operational support to turn
-            research questions into physical experiments.
+            Coop evaluates robot policies on real hardware, measuring what
+            works, where it fails, and how reliably it performs.
           </p>
           <div className="hero-editorial-actions">
             <ContactTrigger className="editorial-button">
-              Work with Coop <ArrowUpRight size={17} aria-hidden="true" />
+              Discuss an evaluation{' '}
+              <ArrowUpRight size={17} aria-hidden="true" />
             </ContactTrigger>
             <a href="#experiments" className="editorial-link">
-              Explore the experiments <ArrowDown size={16} aria-hidden="true" />
+              Explore the benchmarks <ArrowDown size={16} aria-hidden="true" />
             </a>
           </div>
           <div className="hero-supporters" aria-label="Our supporters">
@@ -113,8 +114,8 @@ export default function Home() {
         >
           Understanding how a robot moves an object, recovers from a mistake,
           and works in changing conditions takes time with real hardware. Coop
-          brings the equipment, physical setup, and day-to-day lab operations
-          together, so your team can focus on the research.
+          turns those questions into repeatable evaluations, with defined
+          conditions, measurable outcomes, and evidence you can inspect.
         </p>
       </section>
 
@@ -125,13 +126,11 @@ export default function Home() {
       >
         <div className="wrap">
           <div className="editorial-section-intro" data-reveal="rise">
-            <p className="overline">Experiments at Coop</p>
-            <h2 id="experiments-title">
-              A closer look at what your robots can do
-            </h2>
+            <p className="overline">Benchmarking & evaluations</p>
+            <h2 id="experiments-title">Know what holds up in the real world</h2>
             <p>
-              Start with the question your team needs to answer. We’ll shape the
-              experiment around it.
+              Compare policies, test their limits, and measure progress through
+              controlled experiments on real robots.
             </p>
           </div>
           <ExperimentStudio />
@@ -144,15 +143,15 @@ export default function Home() {
         aria-labelledby="approach-title"
       >
         <div className="approach-intro" data-reveal="rise">
-          <p className="overline">Working with the lab</p>
-          <h2 id="approach-title">An extension of your research team</h2>
+          <p className="overline">How we benchmark</p>
+          <h2 id="approach-title">Trust starts with the protocol</h2>
           <p>
-            From an initial question to a set of runs you can learn from, we
-            manage the physical work at every stage.
+            A useful benchmark makes clear what was tested, how it was scored,
+            and what the result means. We build the evaluation around those
+            details from the start.
           </p>
           <ContactTrigger className="editorial-link">
-            Talk through your project{' '}
-            <ArrowUpRight size={17} aria-hidden="true" />
+            Plan an evaluation <ArrowUpRight size={17} aria-hidden="true" />
           </ContactTrigger>
         </div>
         <div className="approach-details">
@@ -207,8 +206,8 @@ export default function Home() {
               data-reveal-step="1"
             >
               <p>
-                Perspectives on robotics, experimental practice, and the work of
-                building a physical lab.
+                Notes on robot learning, benchmark design, and what physical
+                evaluations reveal about progress in robotics.
               </p>
               <Link href="/insights" className="editorial-link">
                 Visit the journal <ArrowRight size={17} aria-hidden="true" />

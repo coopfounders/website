@@ -9,7 +9,7 @@ import { ScrollEffects } from '@/app/scroll-effects';
 export const metadata: Metadata = {
   title: 'Research & insights',
   description:
-    'Perspectives from Coop on robotics, experimental practice, and the work of building a physical lab.',
+    'Notes from Coop on robot learning, benchmark design, and what physical evaluations reveal about progress in robotics.',
 };
 
 export default function InsightsPage() {
@@ -21,9 +21,9 @@ export default function InsightsPage() {
         <p className="overline">The Coop journal</p>
         <h1>Research & insights</h1>
         <p>
-          Ideas, observations, and work in progress
+          Ideas, methods, and work in progress
           <br />
-          from the physical side of AI.
+          on measuring intelligence in the physical world.
         </p>
       </header>
       <div className="wrap">
@@ -52,15 +52,15 @@ export default function InsightsPage() {
             <div>
               <span className="publication-label">Coming soon</span>
               <h2 id="journal-awaiting-title">
-                Notes from a lab in the making
+                On measuring progress in robotics
               </h2>
               <p>
-                We’ll share our thinking on robotics and running better
-                experiments here. Our first articles are on the way.
+                We’ll share our thinking on benchmark design, policy evaluation,
+                and learning from physical failures. Our first articles are on
+                the way.
               </p>
               <Link href="/#how-it-works" className="editorial-link">
-                Explore what we’re building{' '}
-                <ArrowRight size={17} aria-hidden="true" />
+                Explore our approach <ArrowRight size={17} aria-hidden="true" />
               </Link>
             </div>
           </section>

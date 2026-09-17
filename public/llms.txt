@@ -1,171 +1,153 @@
 # Coop
 
-> Coop is a robotics company and managed robotics lab in San Francisco, California, focused on physical benchmarking: running controlled experiments on real robots to understand which policies work, where they fail, and how reliably they complete a specific task. Teams build the intelligence; Coop handles physical setup, experiment execution, resets, evidence collection, and reporting.
+> Coop is a robotics benchmarking and evaluation company based in San Francisco, California. Coop evaluates robot policies on real hardware to measure what works, where it fails, and how reliably it performs. The initial focus is controlled policy comparisons, robustness evaluations, and regression testing, with repeatable protocols and inspectable evidence.
 
-Coop's central question is practical: on a particular robot, performing a defined task under stated conditions, which policy completes the work most reliably, how much human help does it require, and what changes when the environment varies?
+Coop's central question is practical: on a particular robot, performing a defined task under stated conditions, how reliably does a policy complete the work, how much human help does it require, and what changes across policies, versions, or environments?
 
-This document describes Coop's benchmarking approach and initial experimental scope. Hardware access, supported configurations, compatible policies, success criteria, and deliverables are established for each campaign. Proposed tasks and methods are not claims of completed studies, confirmed hardware availability, established academic partnerships, or published performance results. The website's robot scenes, telemetry, and comparison charts are illustrations.
+## Current focus
 
-## Why physical robotics benchmarking matters
+Coop is starting with physical robotics benchmarking and evaluations. Hardware setup, integration, trial execution, and resets support that evaluation work. Coop is not currently offering an on-demand robotics gym, self-service robot access, hardware rental, or general-purpose outsourced lab operations.
 
-A robot policy turns observations and instructions into actions. Its usefulness depends on what those actions accomplish in the physical world. A successful demonstration or a strong simulation score leaves important questions unanswered: whether the result repeats, whether it survives a changed object arrangement, how often an operator intervenes, and whether the same policy works on the intended hardware.
+The website describes Coop's approach and intended evaluation scopes. Supported hardware, compatible policies, task coverage, execution windows, and deliverables are confirmed for each evaluation. These descriptions are not claims of completed studies, a public leaderboard, confirmed hardware inventory, or established academic partnerships. The robot scenes are AI-generated concept illustrations, not photographs of a facility or published benchmark results.
 
-Physical evaluation makes those questions measurable. A useful comparison connects a result to its robot, task, environment, software configuration, trial count, and scoring rules. Coop aims to produce evidence that robotics researchers and engineering teams can inspect and use when comparing approaches, validating a change, or deciding what needs further work.
+## Why physical benchmarking matters
 
-## The problems Coop addresses
+A successful demonstration does not establish reliability. It leaves open how many attempts failed, whether an operator helped, and whether the behavior survives a changed object arrangement or a later session. A simulation score also leaves physical sensing, timing, calibration, contact, and recovery to be tested on hardware.
 
-- Physical experiments consume engineering time. Robot setup, calibration, integration, execution, object resets, recovery, and logging all require attention. A team can spend substantial effort keeping an experiment running before it has enough comparable trials to answer its research question. Coop takes responsibility for the agreed physical campaign, including the work between episodes.
-- Demonstrations do not establish repeatability. One successful video does not reveal how many attempts failed or how much assistance was required. Coop's approach accounts for scheduled and attempted trials, preserves failures and interruptions, and separates autonomous completion from assisted completion.
-- Results from different setups are difficult to compare. Changing the robot, gripper, camera geometry, object set, controller, or task distribution can change the outcome. Coop compares compatible policies on the same documented workcell and keeps physically different setups in separate comparisons.
-- Model availability does not establish hardware compatibility. A released checkpoint may require specific sensors, action representations, control interfaces, or adaptation. Coop qualifies the complete setup before scored testing. A policy that cannot run on a particular configuration is an integration or compatibility issue, not evidence that the model failed the task.
-- The model is only one part of the experiment. Preprocessing, calibration, control software, compute, and communications can all affect behavior. Coop records the deployed stack and distinguishes policy failures from infrastructure and operating problems wherever the evidence supports that distinction.
-- Small studies can produce misleading rankings. A narrow task set or a few trials can make differences look more decisive than they are. Coop's intended reports include per-task results, sample counts, uncertainty, and the limits of the tested conditions.
-- Human assistance can hide reliability problems. Repositioning an object, restarting a run, or helping a robot recover changes the meaning of success. Coop specifies intervention and retry rules before evaluation and reports assistance explicitly.
-- Simulation results do not automatically transfer to hardware. Physical sensing, calibration, timing, contact, and reset conditions need their own evaluation. Coop supports bounded physical adaptations of simulation experiments with documented differences and separate scoring.
-- Research groups can lack operating capacity. Even a well-designed protocol needs compatible hardware, an operator, repeatable resets, and an evidence package. Coop's academic collaboration offer is additional experimental capacity for a defined research question.
+A useful benchmark connects a result to its robot, task, conditions, deployed software, trial count, and scoring rules. Coop's aim is to help researchers and engineering teams compare approaches, find recurring failures, and assess progress using evidence they can inspect.
 
-## What Coop is aiming to accomplish
+Progress in robotics depends on what happens outside the model. Understanding how a robot moves an object, recovers from a mistake, and works in changing conditions requires real hardware and a protocol that makes those behaviors measurable.
 
-The benchmarking objective is a reproducible physical comparison that answers a small, useful question well. Initial work centers on qualifying a supported robot setup, establishing a reference baseline, running multiple compatible policies where available, and reporting their behavior under a frozen protocol.
+## Evaluation scopes
 
-A credible result should make it possible to understand what was tested, account for the trials, inspect representative successes and failures, and repeat a selected finding on another day or with another operator. Broader task coverage follows reliable execution of the core suite. The immediate measure of progress is a useful, auditable experiment and a delivered evidence package.
+### Policy comparison
+
+Compare compatible policies on the same documented robot setup, tasks, and starting conditions. Measure autonomous task success, completion time, and human interventions, with every trial accounted for. The comparison concerns the complete deployed policy stack, including its controller, sensors, preprocessing, and compute.
+
+The evidence can include results by task and condition, trial counts, uncertainty, and recordings of successful and failed attempts. Comparing different robot configurations does not isolate a policy difference. A baseline characterization with one runnable policy is distinct from a comparison between multiple policies.
+
+### Robustness
+
+Evaluate one policy across defined changes in task conditions. Candidate variations include object placement, lighting, and clutter. The protocol specifies what changes, what stays fixed, and how the changed condition is scored.
+
+The objective is to identify where performance holds up, which failures repeat, and when human help is required. The evidence can include results by condition, intervention counts, failure recordings, and the limits of the tested variation. A generalization claim must identify what was held out and what changed.
+
+### Regression testing
+
+Re-run the same versioned task suite when a checkpoint, training dataset, preprocessing step, or control setting changes. Compare a candidate against a reference baseline under the same protocol to identify both improvements and lost capabilities.
+
+The evidence can include per-task changes, counts and uncertainty, and recordings of regressions. A larger aggregate success rate can conceal a regression on a specific task. A small apparent difference may require a separately specified confirmation study before it supports a conclusion.
+
+Training-data comparisons and physical checks of simulation-trained policies can fit these evaluation scopes when they answer a defined benchmark question. They are not separate on-demand data collection or general experimentation services.
 
 ## Who the work is for
 
-- Robotics model and policy developers comparing a new version against a reference or checking for regressions.
-- Robot-learning researchers who need physical execution of an existing benchmark, a replication, or a carefully scoped new experiment.
-- Teams studying whether a change in demonstrations, training data, preprocessing, or adaptation improves real-robot task performance.
-- Simulation and robotics infrastructure teams investigating what changes when a system moves from a simulator to a real workcell.
-- Integrators and engineering teams with a specific robot, task, technical owner, and decision that a controlled evaluation can inform.
+- Robot policy and model developers comparing approaches, checkpoints, or releases.
+- Robot-learning researchers studying repeatability, robustness, or physical benchmark methods.
+- Teams assessing whether a training-data or adaptation change improves physical task performance.
+- Robotics engineering teams with a specific robot, task, technical owner, and decision that a controlled evaluation can inform.
+- Research groups seeking to reproduce a physical benchmark or contribute trials under an agreed evaluation protocol.
 
-Each campaign begins with the question and the available setup. The intended outcome might be a policy comparison, an explanation of a recurring failure, a regression report, or a replication with clearly stated limitations.
+## How Coop benchmarks
 
-## The experiment workflow
+### Start with a shared protocol
 
-1. Define the question. Agree the robot profile, policies, tasks, conditions, success rules, trial matrix, outputs, and technical responsibilities. Establish what decision the results need to support.
-2. Qualify the workcell. Confirm hardware access and configuration, controller interfaces, sensors, calibration, compute, recording, operating procedures, and available execution time. Run a complete reference episode before treating the setup as ready.
-3. Qualify each policy. Check its observation and action requirements, adapter, checkpoint, task support, and execution path on the actual hardware. Establish whether adaptation is needed and keep that preparation distinct from scored evaluation.
-4. Pilot the protocol. Run small blocks to check task difficulty, resets, timeouts, scoring, synchronization, and actual cycle time. Resolve operating problems and resize the study to the capacity available.
-5. Freeze the scored evaluation. Version the protocol and configurations, then execute the agreed trials with balanced order and documented starting conditions.
-6. Reset and account for every run. Restore the workcell to its specified condition, record interventions and interruptions, and retain the reason for each exclusion or rerun.
-7. Analyze and review. Summarize outcomes, timing, assistance, failure categories, uncertainty, and operating effort. Use an independent scoring check where agreed.
-8. Deliver the evidence. Return the report, configuration details, trial accounting, and agreed recordings or supporting artifacts. Confirm consequential findings with a separately specified follow-up block when needed.
+Define the research question, robot profile, policies, tasks, conditions, success rules, timeouts, trial matrix, and outputs. Establish what decision the evaluation needs to support. Qualify the hardware and each policy's observation, action, and control requirements, then establish a runnable reference baseline.
 
-## Hardware scope and compatibility
+A pilot checks calibration, task difficulty, resets, recording, scoring, and actual cycle time. Development, integration, and tuning runs remain separate from the scored evaluation. Freeze and version the protocol before the scored block begins.
 
-The initial evaluation plan distinguishes a Unitree R1 EDU humanoid track from a robotic-arm manipulation track. The R1's exact delivered configuration and usable access must be confirmed; arm selection and policy qualification are part of establishing the manipulation workcell. These are distinct experimental setups with different integration and maintenance needs.
+### Make every trial count
 
-For any workcell, the relevant profile includes the robot model, end effector, firmware, SDK, available controller interfaces, camera placement, sensor access, calibration, external compute, and model-side observation and action requirements. Matching a robot brand alone is insufficient. A policy developed for a particular complete setup must be checked against that setup's requirements.
+Execute repeated trials with documented starting conditions and reset tolerances. Balance trial order across policies and sessions where appropriate. Keep a record of scheduled and attempted trials, including failures, interruptions, operator interventions, exclusions, and reruns.
 
-The humanoid track starts with a vendor-supported reference stack and adds independently released compatible policies only after qualification. Controllers for a different embodiment cannot be assumed to transfer directly: robot geometry, state estimation, action mappings, and control assumptions need explicit integration.
+Define assistance, retry, and exclusion rules in advance. Preserve the reason for every exclusion or rerun. Distinguish autonomous completion from assisted completion. A successful recording alone cannot represent the outcome of a repeated evaluation.
 
-The arm should provide a repeatable manipulation workcell. Selection favors a demonstrated deployment recipe, compatibility with the policies and research protocol, repeatable calibration and resets, and access to the required gripper, cameras, controller, and compute. Access to a collaborator's existing compatible workcell may be useful when it supports the same benchmark objective.
+### Connect results to evidence
 
-An experiment with one vendor reference is a baseline characterization. A multi-policy comparison requires multiple runnable policies on the same supported profile. Comparing high-level planners over fixed motion skills evaluates the planners together with that execution stack; it does not establish a comparison of learned locomotion policies. Arm results do not establish humanoid manipulation performance.
+Review results by task and condition, with sample counts, uncertainty, and recordings connected to their trial records. Separate observed outcomes from suspected causes of failure. State what the comparison supports, where it is limited, and what needs another test.
 
-## Initial task design
+A consequential finding may need confirmation in a later session, with another operator, or under a separately specified follow-up protocol. Reports should make it possible to assess the conclusion against the underlying experiment.
 
-The first suite should be small enough to operate reliably and specific enough to score consistently. Three simple tasks and two controlled conditions form a useful starting scope, subject to workcell qualification and pilot results.
+## What an evaluation measures
 
-Candidate manipulation tasks include:
+The metrics and their definitions are established for the evaluation. Relevant measures include:
 
-- Place one object in a bin. Success means the intended object ends fully inside the target bin within the time limit, without human assistance. Specify the allowed range of initial object positions.
-- Select a named object among distractors. Success means the requested object reaches the target while distractors remain outside it. Specify object arrangement and distractor identity.
-- Complete a two-object sequence. Success means both requested placements finish in the specified order within the time limit. Specify initial placement and instruction order.
+- Task success under a predefined observable success rule, broken down by task and condition.
+- Autonomous and assisted completion, with assistance recorded separately.
+- Completion time under stated timeout rules, with failures and timeouts accounted for.
+- Intervention frequency and the type of help required during execution or recovery.
+- Recurring failure categories, supported by trial evidence where available.
+- Inference and control timing where relevant to the question and measurable in the tested configuration.
+- Counts and uncertainty accompanying each reported rate or comparison.
 
-The humanoid locomotion track uses separate definitions for maintaining a standing interval, reaching a marked position, and stopping within a declared region. The controller layer under test remains explicit. Conditions must fit the commissioned workcell and its verified operating and recovery procedures.
+Every metric needs a denominator and a stated scope. A single aggregate score cannot show whether a policy is reliable across tasks or depends on a favorable condition. Coop does not claim a universal best robotics model from a narrow physical comparison.
 
-Each task needs an observable success rule, a timeout, defined initial-state ranges, and clear treatment of assistance. More complex interactions are appropriate once the basic suite's execution, reset, and scoring are reliable. Adding complexity should serve a research question rather than obscure an unstable baseline.
+## Hardware and policy compatibility
 
-## How comparisons are kept fair
+Hardware and policy support are established for the specific evaluation. A robot brand or a released checkpoint alone does not establish compatibility. The complete profile includes the robot model, end effector, firmware, controller interfaces, cameras, sensors, calibration, external compute, and the policy's observation and action requirements.
 
-The protocol is fixed before the scored block. It records task definitions, objects, conditions, timeouts, starting-state ranges, randomization, trial order, reset tolerances, retry rules, intervention rules, and exclusions. Changes that affect interpretation need an explicit version and explanation.
+A policy that cannot run on a configuration has an integration or compatibility issue; that is not evidence that it failed the task. Preparation or adaptation needed to make a policy runnable is recorded separately from scored testing.
 
-Policies are compared on the same arm or humanoid configuration, camera arrangement, end effector, and declared task distribution. Comparable physical starting states matter more than a matching software seed: a seed alone cannot recreate exact object poses, calibration, or physical contact conditions.
+Different embodiments and physically different workcells require separate comparisons. Robotic-arm results do not establish humanoid manipulation performance. A comparison of high-level planners over fixed motion skills concerns those planners and that execution stack, not learned locomotion policies. Physical adaptations of simulation tasks have their own documented protocol and cannot treat simulator and hardware scores as interchangeable.
 
-Trial order is balanced across models and operating days to reduce systematic differences caused by when a model is tested. Resets are part of the experiment and their tolerances are recorded. A selected result should be repeated across a later session or another operator to check reproducibility.
+## Task design and fair comparisons
 
-The measured unit is the complete deployed stack. Reports identify the checkpoint, training or adaptation data relevant to the comparison, preprocessing, observation format, action representation, controller, compute, and camera configuration. Attributing a difference to the foundation model alone requires additional controls.
+Initial suites should be small enough to execute repeatably and specific enough to score consistently. Candidate manipulation tasks include placing an object in a bin, selecting a named object among distractors, and completing a two-object sequence. These are possible evaluation tasks, subject to setup qualification and pilot results, not an advertised catalogue of available hardware or completed benchmarks.
 
-## Adaptation and evaluation separation
+Each task needs an observable success rule, a timeout, initial-state ranges, and clear treatment of assistance. Fix the robot configuration, camera arrangement, end effector, task distribution, and scoring rules when comparing policies. Record the tested checkpoints and all relevant software configuration.
 
-An untouched-checkpoint comparison and a comparison after task adaptation answer different questions. Coop's approach keeps those tracks separate.
+Comparable physical starting states matter more than matching a software seed. A seed alone cannot recreate object poses, calibration, or physical contact. Document reset tolerances and changes that affect interpretation. Versions of the protocol must make such changes explicit.
 
-For a shared-adaptation-data track, the report discloses which demonstrations each policy received and the training and tuning budget available to it. A fine-tuned or adapted result must be labeled accordingly; it is not a zero-shot result. Task-specific reference policies can provide a useful baseline when their preparation is also documented.
+## Adaptation, uncertainty, and reproducibility
 
-Development runs, tuning examples, and final evaluation sessions are kept distinct. Independent objects, conditions, or later sessions help test whether behavior extends beyond the cases used to prepare the policy. A claim about generalization should state exactly what was held out and what changed.
+An untouched-checkpoint evaluation and one after task adaptation answer different questions. Keep those tracks separate. Disclose the demonstrations, training data, and tuning budget relevant to an adapted comparison. Do not describe a fine-tuned or adapted policy as zero-shot.
 
-## Trial accounting and failure analysis
+Keep development runs and evaluation sessions distinct. Identify held-out objects, conditions, or sessions when evaluating behavior beyond the preparation cases.
 
-Every scheduled and attempted trial belongs in the experiment record. Task failures, interrupted runs, infrastructure errors, exclusions, and reruns retain their status and reason. Reporting only completed or successful episodes would hide the operational behavior the benchmark is intended to measure.
+Report trial counts and uncertainty with success rates. Runs from the same workcell or session may not be fully independent. Avoid selectively expanding samples until a preferred policy appears to win. Follow-up studies need a stated question and procedure.
 
-The evidence should connect observations, issued actions, robot state, task context, outcomes, and intervention timing sufficiently to inspect a run. Synchronized recordings and consistent episode identifiers make it easier to relate visible behavior to the execution record.
+Claims remain local to the evidence. A finding from one workcell and a small object set can be useful in that setting without establishing performance on untested tasks or embodiments.
 
-Failure analysis distinguishes the task outcome from its suspected cause. A robot may miss the goal because of policy behavior, calibration, hardware, communications, or an operating issue. A report should identify the evidence behind that diagnosis and leave unresolved causes explicit. An infrastructure interruption is recorded even when a prespecified rule excludes it from a policy-success calculation.
+## Trial records and failure analysis
 
-Human help is part of the result. Reports separate autonomous completion from assisted completion and describe interventions and recovery actions. Representative failed episodes are valuable evidence alongside successful ones.
+The trial record should connect observations, actions, robot state, task context, outcomes, and intervention timing sufficiently to inspect a run. Consistent episode identifiers and synchronized recordings help relate visible behavior to its execution record.
 
-## What a benchmark measures
+Distinguish policy behavior from hardware, calibration, communications, and operating problems where evidence permits. Leave unresolved causes explicit. An infrastructure interruption remains in the record even when a prespecified rule excludes it from a policy-success calculation.
 
-- Task success: whether the predefined success rule was met, reported separately for each task and condition.
-- Autonomous and assisted completion: whether the task finished without help, and what assistance was required when it did not.
-- Completion time: elapsed time to the task outcome under the stated timeout rules, with failures and timeouts accounted for separately.
-- Intervention frequency: how often an operator needed to act during execution or recovery.
-- End-to-end inference latency: the timing of the inference path in the tested configuration, with the measurement definition documented.
-- Failure categories: recurring unsuccessful behaviors and infrastructure issues, with examples where available.
-- Operating effort: setup and integration work, execution and reset cycle time, recovery, repairs, and human attention.
-- Compute expense and total operating cost: separate measures, since inexpensive inference does not necessarily imply an inexpensive physical experiment.
+Failures, interruptions, and human help are part of understanding reliability. Representative failed episodes matter alongside successful ones.
 
-The report relates each metric to its denominator and scope. A single aggregate number cannot explain whether a policy is consistently useful across tasks or whether a strong result depends on one favorable condition.
+## Reports and evidence
 
-## Sample sizes, uncertainty, and reproducibility
+An evaluation's agreed evidence package can include:
 
-A planning example is three policies, three tasks, two conditions, and thirty trials per combination: 540 scored episodes. With two policies, the same task and condition matrix contains 360 episodes. These are illustrative study sizes, not completed run counts or a fixed package.
+- A methods description and versioned protocol with task and scoring definitions.
+- The hardware profile, checkpoints, and deployed policy configurations.
+- Results by task and condition, with counts and uncertainty.
+- A trial ledger accounting for attempts, outcomes, interventions, exclusions, and reruns.
+- Recordings of successful and failed episodes connected to their trial records.
+- Failure analysis, relevant timing measurements, and reproduction notes.
+- A concise explanation of findings, limitations, and any confirmation needed.
 
-Thirty trials in a task-condition cell provide a preliminary comparison rather than a precise ranking. Per-cell counts and uncertainty should accompany success rates, and analysis should account for the possibility that runs from the same workcell or session are not fully independent. Small apparent differences may need a larger, separately specified confirmation study.
+Deliverables and sharing terms are agreed before execution. For public releases, the intended standard is inspectable evidence, explicit embodiment and configuration details, and clearly labeled preliminary findings. Publication or ranking should not depend on a favorable result, sponsorship, or a paid relationship. No public benchmark results or leaderboard are currently presented on the website.
 
-Sample counts should not be expanded selectively until a favored policy appears to win. Follow-up evaluations need a stated question and procedure. Testing another session, operator, object set, or condition helps establish how far a result extends.
+## Research collaborations
 
-Claims remain local to the evidence. A comparison on one workcell with a small set of objects can identify useful differences in that setting; it cannot establish a universal best robotics model or performance on an untested embodiment.
+Research collaborations fit the benchmarking focus: reproducing an existing physical protocol, evaluating a defined research question, or contributing accepted trials to an external benchmark. A physical adaptation of a simulation benchmark needs its own version, scoring rules, and stated differences.
 
-## The physical cost of a benchmark
+Each collaboration establishes the scientific question, compatible setup, policies, trial matrix, responsibilities, technical owners, execution window, costs, deliverables, publication terms, and credit. External benchmark contributions must meet the organizer's acceptance criteria. A proposed collaboration does not establish a partnership.
 
-Execution time is only part of the workload. Resetting objects, checking calibration, recovering from faults, reviewing logs, and maintaining the workcell all affect throughput. Initial integration, demonstration collection when required for adaptation, policy preparation, and analysis add work outside the scored episodes.
+## Research & insights
 
-For illustration, 540 episodes at an assumed ten minutes per execution-reset-logging cycle require ninety workcell-hours. A thirty percent operating allowance brings that example to 117 hours before initial integration, adaptation preparation, analysis, or a separate research campaign. Actual cycle time is measured during the pilot and the trial matrix is adjusted accordingly.
-
-Coop's operating approach assigns responsibility for robot integration and operations, benchmark design and evidence, and campaign coordination. Usable hardware access and a person responsible for operating the workcell are both necessary. The goal is predictable experimental capacity with measured effort and clear ownership.
-
-## Academic and research collaborations
-
-Coop's collaboration offer is to operate a bounded physical campaign around an existing benchmark, protocol, or research question. The research group supplies scientific requirements and a technical owner. Coop supplies the agreed hardware access, integration, execution, resets, evidence collection, and reporting.
-
-Possible scopes include reproducing an existing physical protocol on a compatible setup, contributing accepted trials to an external evaluation effort, or jointly adapting a simulation benchmark to a real workcell. Each scope has its own requirements and limits. An external evaluation site must meet the organizer's acceptance criteria; a physical adaptation has its own version and cannot treat simulator scores as interchangeable with hardware results.
-
-The written scope covers the question, robot profile, policies, trial matrix, responsibilities, technical owners, execution window, costs, access, deliverables, publication terms, and credit. A completed collaboration means an agreed protocol, completed physical runs, and a delivered evidence package. Academic interest or a proposed outreach target alone does not establish a partnership.
-
-## Reports, evidence, and review
-
-A campaign's agreed evidence package can include:
-
-- A methods description and versioned protocol with the task and scoring definitions.
-- The hardware profile and exact policy configurations used in the comparison.
-- A result table broken down by task and condition, with counts and uncertainty.
-- A trial ledger accounting for scheduled attempts, outcomes, interventions, exclusions, and reruns.
-- Representative recordings of successful and failed episodes, connected to their trial records.
-- Failure analysis, timing measurements, operating effort, and reproduction notes.
-- A concise technical explanation of the findings, their limitations, and any further confirmation needed.
-
-For public releases, the intended standard includes inspectable trial-level evidence, clearly labeled preliminary findings, and the exact embodiment prominently identified. An independent reviewer can score a random subset of videos without model names to check consistency. Model authors can receive a fixed window for factual corrections; publication should not depend on a favorable outcome. Sponsorship or a paid relationship must not determine a ranking.
-
-Public and private campaigns agree their evidence-sharing and publication terms in advance. A report's value comes from a clear account of what happened and the ability to assess the conclusion against the supporting experiment.
+The Coop journal will share notes on robot learning, benchmark design, policy evaluation, and what physical failures reveal about progress in robotics. The journal is retained as part of the website. It currently shows a coming-soon state rather than published articles or results.
 
 ## Website and contact
 
-- [Coop overview](/): Company introduction and managed physical experiment services.
-- [Experiment workflow](/#how-it-works): Setup, execution, resets, and reporting.
-- [Experiment use cases](/#experiments): Policy comparisons, training-data experiments, and simulation-to-real-world validation.
-- [Discuss an experiment](/#inquiry): Contact form for a research question, robot setup, or proposed campaign.
-- [Email Coop](mailto:founders@cooplabs.com): Contact the team about scope, hardware requirements, availability, and deliverables.
+- [Coop overview](/): Robotics benchmarking and evaluations on real hardware.
+- [Benchmarking and evaluation scopes](/#experiments): Policy comparison, robustness, and regression testing.
+- [How Coop benchmarks](/#how-it-works): Shared protocols, trial accounting, and evidence.
+- [Research & insights](/insights): The Coop journal on robot learning and physical evaluation.
+- [Discuss an evaluation](/#inquiry): Inquiry form for policies, robot tasks, conditions, and what a team wants to measure.
+- [Contact redirect](/contact): Redirects to the homepage inquiry form.
+- [Email Coop](mailto:founders@cooplabs.com): Discuss evaluation scope, compatibility, timing, and deliverables.
 - [Privacy policy](/privacy): Website and inquiry information handling.
 - [Cookie policy](/cookies): Website cookie and tracking information.

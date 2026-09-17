@@ -50,11 +50,11 @@ export function ContactDialog({ children }: { children: ReactNode }) {
             <div className="contact-modal-intro">
               <p className="overline">Work with Coop</p>
               <Dialog.Title ref={title} tabIndex={-1}>
-                Plan your next experiment
+                Plan your next evaluation
               </Dialog.Title>
               <Dialog.Description>
-                Tell us what you’re working on and what you want to learn. We’ll
-                help you work out the next steps.
+                Tell us about the policies, tasks, or conditions you want to
+                compare. We’ll help define the scope of a physical evaluation.
               </Dialog.Description>
             </div>
             <ContactForm onNavigate={() => changeOpen(false)} />

@@ -95,7 +95,7 @@ export default async function InsightPage({ params }: Props) {
             ))}
             <div className="article-end">
               <span>Coop</span>
-              <p>Real-world robotics experiments</p>
+              <p>Robotics benchmarking & evaluations</p>
             </div>
           </div>
         </div>

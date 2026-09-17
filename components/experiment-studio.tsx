@@ -7,34 +7,36 @@ import { ContactTrigger } from './contact-dialog';
 
 const experiments = [
   {
-    name: 'Policy evaluation',
-    title: 'Understand how your policy behaves on a real robot',
+    name: 'Policy comparison',
+    title: 'Compare policies on common ground',
     description:
-      'Compare versions across the same tasks, objects, and starting conditions. Build a clearer picture of what improved, what regressed, and what to investigate next.',
-    variable: 'Policy version, task, or operating condition',
-    evidence: 'Trial recordings, outcomes, and failure cases',
-    image: '/images/coop-experiment-policy.webp',
-    alt: 'Two robot arms performing matched block-sorting trials at adjacent workstations',
+      'Evaluate compatible policies on the same robot, tasks, and starting conditions. Measure autonomous success, completion time, and interventions, with every trial accounted for.',
+    comparison: 'Different policies on one documented robot setup',
+    evidence:
+      'Per-task results, trial counts, and success and failure recordings',
+    image: '/images/coop-benchmark-comparison-humanoid.webp',
+    alt: 'Concept illustration of two matching humanoid robots sorting blocks at identical workstations for repeated policy comparison trials',
   },
   {
-    name: 'Data validation',
-    title: 'See what a change in training data changes in practice',
+    name: 'Robustness',
+    title: 'Find where performance starts to break',
     description:
-      'Take a dataset or processing decision beyond an offline metric. Run controlled comparisons to understand its effect on behavior in a physical environment.',
-    variable: 'Dataset, demonstration quality, or processing method',
-    evidence: 'Behavioral comparisons across agreed tasks',
-    image: '/images/coop-experiment-data.webp',
-    alt: 'Cameras recording a humanoid robot demonstration beside a monitor showing captured task sequences',
+      'Vary object placement, lighting, or clutter in a controlled test. See which conditions a policy handles reliably, which failures repeat, and when it needs human help.',
+    comparison: 'One policy across defined changes in task conditions',
+    evidence:
+      'Results by condition, intervention counts, and failure recordings',
+    image: '/images/coop-benchmark-robustness-humanoid.webp',
+    alt: 'Concept illustration of a humanoid robot sorting objects with interchangeable trays showing sparse and cluttered arrangements',
   },
   {
-    name: 'Sim-to-real',
-    title: 'Find the gaps between a simulation and a physical task',
+    name: 'Regression testing',
+    title: 'Know whether a new version is a step forward',
     description:
-      'Test transfer on real hardware and examine the details that simulation can miss, from object placement and lighting to contact and hardware variation.',
-    variable: 'Environment, object properties, or hardware setup',
-    evidence: 'Transfer outcomes and physical failure analysis',
-    image: '/images/coop-experiment-transfer.webp',
-    alt: 'A blue wireframe simulation beside the same robot arm and manipulation task on physical hardware',
+      'Re-run a fixed task suite when a checkpoint, training dataset, or control setting changes. Compare against a reference baseline to see where performance improves and where earlier capabilities slip.',
+    comparison: 'Baseline and candidate on the same versioned task suite',
+    evidence: 'Per-task changes, trial counts, and recordings of regressions',
+    image: '/images/coop-benchmark-regression-humanoid.webp',
+    alt: 'Concept illustration of a humanoid robot beside a monitor showing paired humanoid task recordings, with a placed object in one and a missed placement in the other',
   },
 ];
 
@@ -45,7 +47,7 @@ export function ExperimentStudio() {
   return (
     <div className="experiment-studio">
       <fieldset className="studio-options" data-reveal="rise">
-        <legend className="sr-only">Choose an experiment type</legend>
+        <legend className="sr-only">Choose an evaluation type</legend>
         {experiments.map((item, index) => (
           <button
             key={item.name}
@@ -80,16 +82,16 @@ export function ExperimentStudio() {
           <p>{experiment.description}</p>
           <dl>
             <div>
-              <dt>What we vary</dt>
-              <dd>{experiment.variable}</dd>
+              <dt>The comparison</dt>
+              <dd>{experiment.comparison}</dd>
             </div>
             <div>
-              <dt>What you review</dt>
+              <dt>The evidence</dt>
               <dd>{experiment.evidence}</dd>
             </div>
           </dl>
           <ContactTrigger className="editorial-link">
-            Discuss an experiment <ArrowRight size={17} aria-hidden="true" />
+            Discuss an evaluation <ArrowRight size={17} aria-hidden="true" />
           </ContactTrigger>
         </div>
       </div>

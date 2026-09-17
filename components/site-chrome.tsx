@@ -32,7 +32,7 @@ export function SiteFooter() {
       <div className="footer-main">
         <BrandLogo />
         <ContactTrigger className="footer-contact">
-          Start a conversation <ArrowUpRight size={15} />
+          Discuss an evaluation <ArrowUpRight size={15} />
         </ContactTrigger>
         <a className="back-top mono" href="#top">
           Back to top <ArrowRight size={14} />

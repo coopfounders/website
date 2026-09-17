@@ -12,20 +12,21 @@ export default function PrivacyPage() {
     <main className="policy-page wrap" id="main-content">
       <div className="page-intro">
         <h1>Privacy policy</h1>
-        <p className="policy-date">Last updated September 7, 2026</p>
+        <p className="policy-date">Last updated September 16, 2026</p>
         <p>
           We want you to understand what you share with Coop and how we use it.
-          This policy covers our website and inquiries about our robotics lab
-          services.
+          This policy covers our website and inquiries about our robotics
+          benchmarking and evaluation work.
         </p>
       </div>
       <div className="policy-body">
         <section>
           <h2>Who we are</h2>
           <p>
-            Coop is a managed robotics lab based in San Francisco, California.
-            Coop is responsible for the personal information described in this
-            policy. For privacy questions or requests, contact{' '}
+            Coop is a robotics benchmarking and evaluation company based in San
+            Francisco, California. Coop is responsible for the personal
+            information described in this policy. For privacy questions or
+            requests, contact{' '}
             <a href="mailto:founders@cooplabs.com">founders@cooplabs.com</a>.
           </p>
         </section>
@@ -34,7 +35,7 @@ export default function PrivacyPage() {
           <p>
             When you submit an inquiry, we receive your name, email address,
             company if provided, and the details you choose to share about your
-            experiment. Please do not include passwords, sensitive personal
+            evaluation. Please do not include passwords, sensitive personal
             information, or confidential datasets in the form.
           </p>
           <p>
@@ -48,7 +49,7 @@ export default function PrivacyPage() {
           <h2>How we use your information</h2>
           <p>
             We use inquiry details to respond to you, discuss your project,
-            scope an experiment, and manage our business relationship. We use
+            scope an evaluation, and manage our business relationship. We use
             technical information to operate, troubleshoot, and protect the
             website. We do not use contact form submissions to sign you up for
             marketing.

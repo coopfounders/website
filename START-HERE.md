@@ -2,6 +2,12 @@
 
 This is a Next.js App Router website, configured for Vercel hosting.
 
+The site now focuses on robotics benchmarking and evaluations: policy
+comparison, robustness, and regression testing. Lab operations support those
+evaluations; the site does not offer an on-demand robotics gym. Homepage copy,
+navigation, inquiry prompts, metadata, journal introductions, and `llms.txt`
+share this focus. The existing visual system and hero artwork are retained.
+
 ## Run locally
 
 Use Node.js 22 (also specified in `.nvmrc`), then open a terminal in this folder:
@@ -23,7 +29,7 @@ external services; Resend credentials are needed only to send contact inquiries.
 - app/editorial.css: homepage and journal typography, layered desktop/mobile hero artwork behind the copy, and compact section spacing
 - app/scroll-effects.tsx: subtle hero artwork drift, one-time content reveals, and the Insights panel entrance; respects reduced motion and keeps content visible without JavaScript
 - app/layout.tsx: self-hosted Newsreader and Manrope font configuration
-- components/experiment-studio.tsx: interactive experiment selector with a separate illustration for each topic
+- components/experiment-studio.tsx: interactive evaluation selector for policy comparison, robustness, and regression testing, with a separate generated illustration for each topic
 - components/landscape-lines.tsx: decorative blue landscape artwork
 - app/insights/: journal landing page and individual article template
 - lib/insights.ts: your team's article content and publication flags
