@@ -21,6 +21,12 @@
 - Manrope: variable body face from the [Google Fonts source repository](https://github.com/google/fonts/tree/main/ofl/manrope), self-hosted as `public/fonts/manrope-latin.woff2`.
 - Both fonts are Latin subsets with common punctuation and symbols. Their SIL Open Font License files are included beside the fonts. No third-party font requests are made at runtime.
 
+# Journal artwork
+
+The cover for “Why we’re building Coop” is [why-were-building-coop.webp](public/images/insights/why-were-building-coop.webp). It was generated through the approved fallback imagegen CLI and OpenAI Image API (`gpt-image-2`, edits endpoint, high quality, 1536 × 1024), using `coop-benchmark-robustness-humanoid.webp` as the style and humanoid design reference. The [exact cover prompt](design/insight-why-building-coop-prompt.txt) was passed unchanged with `--no-augment`.
+
+The concept illustration shows the physical work behind a repeatable evaluation: a humanoid manipulating a small object, matching reset trays, an overhead camera, and a recorded trial. It appears on the article, Insights archive, and homepage feature. The article caption identifies it as concept artwork. The source PNG is saved locally at `output/imagegen/insight-why-building-coop.png`; the optimized WebP is about 223 KiB.
+
 # Benchmark illustrations
 
 The active evaluation selector uses humanoid versions of the three benchmark illustrations. They were edited through the approved fallback imagegen CLI and OpenAI Image API (`gpt-image-2`, edits endpoint, high quality, 1024 × 1024). Each original benchmark image was the edit target, and `coop-lab-mobile.webp` supplied the humanoid design reference. The edits preserve the existing tasks, composition, architectural pencil drawing, ivory paper, and muted watercolor palette. Each prompt was passed unchanged with `--no-augment`.

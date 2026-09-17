@@ -181,18 +181,27 @@ export default function Home() {
           <>
             <div className="editorial-journal-heading" data-reveal="rise">
               <div>
-                <p className="overline">From the Coop team</p>
+                <p className="overline">The Coop journal</p>
                 <h2 id="journal-title">Research & insights</h2>
+                <p className="editorial-journal-description">
+                  The questions, methods, and physical work behind our
+                  benchmarks.
+                </p>
               </div>
               <Link href="/insights" className="editorial-link">
-                View all insights <ArrowRight size={17} aria-hidden="true" />
+                Visit the journal <ArrowRight size={17} aria-hidden="true" />
               </Link>
             </div>
-            <div className="insights-grid" data-reveal="rise">
-              {posts.slice(0, 3).map((post) => (
-                <InsightCard key={post.slug} post={post} />
-              ))}
+            <div className="homepage-journal-feature" data-reveal="rise">
+              <InsightCard post={posts[0]} featured headingLevel={3} />
             </div>
+            {posts.length > 1 && (
+              <div className="insights-grid" data-reveal="rise">
+                {posts.slice(1, 3).map((post) => (
+                  <InsightCard key={post.slug} post={post} headingLevel={3} />
+                ))}
+              </div>
+            )}
           </>
         ) : (
           <div className="journal-invitation" data-reveal="journal">

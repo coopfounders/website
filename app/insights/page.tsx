@@ -7,40 +7,37 @@ import { getPublishedInsights } from '@/lib/insights';
 import { ScrollEffects } from '@/app/scroll-effects';
 
 export const metadata: Metadata = {
-  title: 'Research & insights',
+  title: 'Research & Insights',
   description:
     'Notes from Coop on robot learning, benchmark design, and what physical evaluations reveal about progress in robotics.',
 };
 
 export default function InsightsPage() {
-  const [featured, ...posts] = getPublishedInsights();
+  const posts = getPublishedInsights();
   return (
     <main id="main-content" className="insights-page">
       <ScrollEffects />
       <header className="journal-masthead wrap">
         <p className="overline">The Coop journal</p>
-        <h1>Research & insights</h1>
+        <h1>Research & Insights</h1>
         <p>
-          Ideas, methods, and work in progress
+          Notes on building, testing, and learning
           <br />
-          on measuring intelligence in the physical world.
+          from robots in the physical world.
         </p>
       </header>
       <div className="wrap">
-        {featured ? (
+        {posts.length > 0 ? (
           <section
             className="insights-archive"
             aria-label="Published insights"
             data-reveal="rise"
           >
-            <InsightCard post={featured} featured />
-            {posts.length > 0 && (
-              <div className="insights-grid">
-                {posts.map((post) => (
-                  <InsightCard key={post.slug} post={post} />
-                ))}
-              </div>
-            )}
+            <div className="insights-grid">
+              {posts.map((post) => (
+                <InsightCard key={post.slug} post={post} />
+              ))}
+            </div>
           </section>
         ) : (
           <section

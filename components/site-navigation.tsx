@@ -8,7 +8,7 @@ import { ContactTrigger } from './contact-dialog';
 
 const links = [
   { href: '/#experiments', label: 'Benchmarks' },
-  { href: '/#how-it-works', label: 'How it works' },
+  { href: '/#how-it-works', label: 'How It Works' },
   { href: '/insights', label: 'Insights' },
 ];
 

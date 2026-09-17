@@ -138,7 +138,7 @@ Each collaboration establishes the scientific question, compatible setup, polici
 
 ## Research & insights
 
-The Coop journal will share notes on robot learning, benchmark design, policy evaluation, and what physical failures reveal about progress in robotics. The journal is retained as part of the website. It currently shows a coming-soon state rather than published articles or results.
+The Coop journal shares notes on robot learning, benchmark design, policy evaluation, and the physical work behind robotics experiments. Its first article, [Why we’re building Coop](/insights/why-were-building-coop), explains why a successful demonstration is not enough, the infrastructure needed for repeatable physical evaluation, and the recordings, logs, failure analysis, intervention records, and conditions that accompany a useful result. It is a founding note, not a release of benchmark scores. Future writing will cover methods, lab setup, experiments, and research.
 
 ## Website and contact
 
@@ -146,6 +146,7 @@ The Coop journal will share notes on robot learning, benchmark design, policy ev
 - [Benchmarking and evaluation scopes](/#experiments): Policy comparison, robustness, and regression testing.
 - [How Coop benchmarks](/#how-it-works): Shared protocols, trial accounting, and evidence.
 - [Research & insights](/insights): The Coop journal on robot learning and physical evaluation.
+- [Why we’re building Coop](/insights/why-were-building-coop): The first journal article, introducing the purpose and approach behind Coop.
 - [Discuss an evaluation](/#inquiry): Inquiry form for policies, robot tasks, conditions, and what a team wants to measure.
 - [Contact redirect](/contact): Redirects to the homepage inquiry form.
 - [Email Coop](mailto:founders@cooplabs.com): Discuss evaluation scope, compatibility, timing, and deliverables.
